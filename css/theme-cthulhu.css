@@ -1,0 +1,355 @@
+[data-theme="cthulhu"] {
+    --bg-primary: #0A0E14;
+    --bg-secondary: #1A1F2E;
+    --bg-tertiary: #050810;
+    --bg-card: #1A1F2E;
+    --bg-input: #050810;
+    --text-primary: #B8C1D1;
+    --text-secondary: #6B7A8D;
+    --text-dim: #4A5568;
+    --accent-green: #00E5A0;
+    --accent-amber: #00E5A0;
+    --accent-red: #8B0000;
+    --accent-blue: #3a6b8b;
+    --accent-purple: #7B2D8E;
+    --accent-cyan: #00E5A0;
+    --border-color: #2D3748;
+    --border-glow: rgba(0, 229, 160, 0.15);
+    --shadow-glow: 0 0 20px rgba(0, 229, 160, 0.15);
+    --shadow-card: 0 0 20px rgba(0, 229, 160, 0.15);
+    --font-heading: 'Cinzel Decorative', serif;
+    --font-body: 'Crimson Text', serif;
+    --font-mono: 'Fira Code', monospace;
+    --font-sans: 'Josefin Sans', 'Noto Sans SC', sans-serif;
+    --font-ui: 'Cormorant Garamond', 'Georgia', serif;
+    --font-title: 'Josefin Sans', sans-serif;
+    --radius: 0px;
+    --radius-lg: 4px;
+    --transition: 0.2s ease;
+    --terminal-line-height: 1.8;
+    --sidebar-width: 320px;
+    --input-height: 48px;
+    --statusbar-height: 44px;
+    --bg-paper: #1A1F2E;
+    --text-paper: #B8C1D1;
+    --paper-lines: none;
+    --paper-line-size: 28px;
+    --paper-margin-line: 0px;
+    --bar-bg: linear-gradient(to bottom, #1A1F2E, #0A0E14);
+    --bar-text: #00E5A0;
+    --btn-bg: #1A1F2E;
+    --btn-hover: #00E5A0;
+    --desk-bg: #0D1220;
+    --desk-border: #2D3748;
+    --sidebar-bg: #0A0E14;
+    --sidebar-border: #2D3748;
+    --sidebar-section-bg: #050810;
+    --panel-pattern: radial-gradient(ellipse at 30% 40%, #1A1F2E 0%, transparent 60%), radial-gradient(ellipse at 70% 60%, #0A0E14 0%, transparent 50%);
+    --body-bg: radial-gradient(ellipse at center, #0A0E14 0%, #050810 100%);
+    --body-texture: none;
+    --highlight-color: #C44040;
+    --dialogue-color: #6B7A8D;
+    --npc-text: #6B7A8D;
+    --stat-icon-color: #4A5568;
+    --fill-san: linear-gradient(90deg, #7B2D8E, #9B59B6);
+    --fill-hp: linear-gradient(90deg, #8B0000, #E74C3C);
+    --fill-luk: #00E5A0;
+    --dice-border: #00E5A0;
+    --input-border: #2D3748;
+    --section-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6), 0 0 8px rgba(0, 229, 160, 0.03);
+    --desk-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 229, 160, 0.03);
+    --avatar-border: #2D3748;
+    --option-bg: rgba(0, 229, 160, 0.03);
+    --option-hover: rgba(0, 229, 160, 0.1);
+    --option-border: #2D3748;
+    --dice-bg: #1A1F2E;
+    --dice-wheel-bg: #050810;
+    --dice-wheel-border: #2D3748;
+    --dice-digit: #00E5A0;
+    --top-title: '🌑 克苏鲁秘教';
+    --success: #00E5A0;
+    --failure: #8B0000;
+    --dice-face-bg: linear-gradient(145deg, #3A3A4A, #252535);
+    --dice-face-border: #1A1A2A;
+    --dice-dot-color: #00E5A0;
+    --dice-dot-shadow: 0 0 8px rgba(0, 229, 160, 0.6);
+    --dice-shadow-color: rgba(0, 229, 160, 0.3);
+    --dice-glow: rgba(0, 229, 160, 0.2);
+    --dice-result-color: #00E5A0;
+    --table-bg: radial-gradient(ellipse at center, #0D1220 0%, #050810 70%);
+    --check-success-bg: rgba(0, 229, 160, 0.1);
+    --check-success-border: rgba(0, 229, 160, 0.3);
+    --check-success-color: #00E5A0;
+    --check-failure-bg: rgba(139, 0, 0, 0.1);
+    --check-failure-border: rgba(139, 0, 0, 0.3);
+    --check-failure-color: #E74C3C;
+    --check-critical-bg: rgba(0, 229, 160, 0.15);
+    --check-critical-border: rgba(0, 229, 160, 0.5);
+    --check-critical-color: #00E5A0;
+    --check-fumble-bg: rgba(139, 0, 0, 0.2);
+    --check-fumble-border: rgba(231, 76, 60, 0.6);
+    --check-fumble-color: #FF4444;
+    --smoke-color: rgba(0, 229, 160, 0.15);
+    --narrative-bg: #050810;
+    --input-area-bg: #1A1F2E;
+    --input-field-color: #B8C1D1;
+    --san-fill: linear-gradient(90deg, #7B2D8E, #9B59B6);
+    --hp-fill: linear-gradient(90deg, #8B0000, #E74C3C);
+    --color-danger: #8B0000;
+    --color-lamp: #00E5A0;
+    --color-smoke: rgba(26, 31, 46, 0.85);
+}
+
+[data-theme="cthulhu"] #status-bar .game-title::before {
+    content: '🌑';
+}
+
+[data-theme="cthulhu"] #terminal-area {
+    background: var(--narrative-bg);
+    position: relative;
+}
+
+[data-theme="cthulhu"] #terminal-area::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, var(--color-smoke) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+[data-theme="cthulhu"] #terminal-output {
+    background-image: none;
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 229, 160, 0.02);
+}
+
+[data-theme="cthulhu"] #terminal-output::before {
+    display: none;
+}
+
+[data-theme="cthulhu"] #terminal-output .message {
+    border-bottom: 1px solid rgba(45, 55, 72, 0.3);
+}
+
+[data-theme="cthulhu"] #terminal-output .message.narrator {
+    color: #4A5568;
+    text-shadow: 0 0 4px rgba(0, 229, 160, 0.08);
+}
+
+[data-theme="cthulhu"] #terminal-output .message.kp {
+    color: #B8C1D1;
+    text-shadow: 0 0 6px rgba(0, 229, 160, 0.12);
+}
+
+[data-theme="cthulhu"] #terminal-output .message.npc {
+    color: #4A5568;
+}
+
+[data-theme="cthulhu"] #terminal-output .message.system {
+    color: #00e5a0;
+    text-shadow: 0 0 8px rgba(0, 229, 160, 0.1);
+}
+
+[data-theme="cthulhu"] .unspeakable {
+    color: var(--accent-green);
+    text-shadow: 0 0 8px var(--accent-green);
+    animation: unspeakable-text 3s infinite;
+}
+
+@keyframes unspeakable-text {
+    0% { opacity: 1; letter-spacing: normal; }
+    25% { opacity: 0.7; letter-spacing: 2px; filter: blur(0.5px); }
+    50% { opacity: 0.9; letter-spacing: -1px; }
+    75% { opacity: 0.6; letter-spacing: 3px; filter: blur(1px); }
+    100% { opacity: 1; letter-spacing: normal; }
+}
+
+[data-theme="cthulhu"] .dialogue {
+    margin: 16px 0;
+    padding: 12px 16px;
+    border-left: 3px solid var(--accent-green);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+[data-theme="cthulhu"] .dialogue-speaker {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--accent-green);
+    margin-bottom: 6px;
+}
+
+[data-theme="cthulhu"] .dialogue-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+[data-theme="cthulhu"] #input-area {
+    background: var(--input-area-bg);
+}
+
+[data-theme="cthulhu"] #terminal-input {
+    color: var(--input-field-color);
+    background: var(--bg-tertiary);
+    border-color: var(--input-border);
+}
+
+[data-theme="cthulhu"] #terminal-input:focus {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 8px rgba(0, 229, 160, 0.1);
+}
+
+[data-theme="cthulhu"] #input-prompt {
+    color: var(--accent-green);
+    text-shadow: 0 0 8px rgba(0, 229, 160, 0.3);
+}
+
+[data-theme="cthulhu"] #send-btn {
+    border-color: var(--border-color);
+    color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] #send-btn:hover {
+    background: var(--accent-green);
+    color: #000;
+    border-color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .quick-options .option-btn {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="cthulhu"] .quick-options .option-btn:hover {
+    background: rgba(0, 229, 160, 0.08);
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .quick-options .option-btn .option-key {
+    color: var(--accent-green);
+    border-color: var(--border-color);
+}
+
+[data-theme="cthulhu"] #sidebar-tabs .tab.active {
+    color: var(--accent-green);
+    border-bottom-color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .sidebar-section .section-title {
+    color: var(--text-secondary);
+}
+
+[data-theme="cthulhu"] .companion-card .companion-name {
+    color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .clue-item {
+    color: var(--accent-green);
+    border-left-color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .stat-fill.san {
+    background: linear-gradient(90deg, #7B2D8E, #9B59B6);
+}
+
+[data-theme="cthulhu"] .dice-modal-title {
+    color: var(--accent-green);
+    text-shadow: 0 0 14px rgba(0, 229, 160, 0.35);
+}
+
+[data-theme="cthulhu"] .dice-modal-content .dice-face {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    text-shadow: 0 0 12px rgba(0, 229, 160, 0.5);
+}
+
+[data-theme="cthulhu"] .dice-roll-btn {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    background: linear-gradient(135deg, rgba(0, 229, 160, 0.12), rgba(0, 229, 160, 0.04));
+}
+
+[data-theme="cthulhu"] .dice-roll-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(0, 229, 160, 0.22), rgba(0, 229, 160, 0.08));
+    box-shadow: 0 6px 24px rgba(0, 229, 160, 0.25);
+}
+
+[data-theme="cthulhu"] .theme-option.active {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 12px rgba(0, 229, 160, 0.15);
+}
+
+[data-theme="cthulhu"] .theme-option:hover {
+    border-color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .theme-option.active .theme-option-name {
+    color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .typing-cursor {
+    background: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .settings-modal-title .logo-icon {
+    color: var(--accent-green);
+    text-shadow: 0 0 14px rgba(0, 229, 160, 0.5);
+}
+
+[data-theme="cthulhu"] .settings-modal-title h2 {
+    color: var(--accent-green);
+    text-shadow: 0 0 12px rgba(0, 229, 160, 0.25);
+}
+
+[data-theme="cthulhu"] .tab-btn.active {
+    color: var(--accent-green);
+    border-bottom-color: var(--accent-green);
+}
+
+[data-theme="cthulhu"] .check-result.success {
+    background: var(--check-success-bg);
+    border-color: var(--check-success-border);
+    color: var(--check-success-color);
+}
+
+[data-theme="cthulhu"] .check-label.critical-success {
+    background: var(--check-critical-bg);
+    border-color: var(--check-critical-border);
+    color: var(--check-critical-color);
+    text-shadow: 0 0 10px rgba(0, 229, 160, 0.3);
+}
+
+[data-theme="cthulhu"] .check-label.success {
+    background: var(--check-success-bg);
+    border-color: var(--check-success-border);
+    color: var(--check-success-color);
+}
+
+[data-theme="cthulhu"] .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+[data-theme="cthulhu"] .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-particle 8s infinite;
+}
+
+@keyframes float-particle {
+    0% { opacity: 0; transform: translateY(100vh); }
+    10% { opacity: 0.4; }
+    90% { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-20px); }
+}

@@ -1,0 +1,569 @@
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Crimson+Text:wght@400;600;700&family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
+
+[data-theme="forbidden-tome"] {
+    --bg-primary: #0c0608;
+    --bg-secondary: #120a0c;
+    --bg-tertiary: #1e1216;
+    --bg-card: #160e12;
+    --bg-input: #0a0608;
+    --text-primary: #d4b8b0;
+    --text-secondary: #9a7068;
+    --text-dim: #6a4840;
+    --accent-green: #88aa66;
+    --accent-amber: #c8a040;
+    --accent-red: #cc2233;
+    --accent-blue: #6688aa;
+    --accent-purple: #8844aa;
+    --accent-cyan: #668880;
+    --border-color: #301820;
+    --border-glow: rgba(200, 160, 64, 0.12);
+    --shadow-glow: 0 0 20px rgba(200, 160, 64, 0.03);
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.7);
+    --font-mono: 'Crimson Text', 'Noto Serif SC', serif;
+    --font-sans: 'Noto Serif SC', 'SimSun', serif;
+    --radius: 3px;
+    --radius-lg: 5px;
+}
+
+[data-theme="forbidden-tome"] #status-bar {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(18, 10, 12, 0.95) 100%);
+    border-bottom: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] #status-bar::after {
+    background: linear-gradient(90deg, transparent, var(--accent-red), var(--accent-amber), transparent);
+    opacity: 0.1;
+}
+
+[data-theme="forbidden-tome"] #status-bar .game-title {
+    color: var(--accent-amber);
+    text-shadow: 0 0 14px rgba(200, 160, 64, 0.4), 0 0 30px rgba(204, 34, 51, 0.1);
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 5px;
+    font-size: 13px;
+}
+
+[data-theme="forbidden-tome"] #status-bar .game-title::before {
+    content: '☽';
+    text-shadow: 0 0 8px rgba(200, 160, 64, 0.6);
+}
+
+[data-theme="forbidden-tome"] #status-bar .status-item:hover {
+    background: rgba(200, 160, 64, 0.04);
+}
+
+[data-theme="forbidden-tome"] #status-bar .status-item.mode-indicator::after {
+    background: var(--accent-red);
+    box-shadow: 0 0 6px var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] #terminal-output .message.system {
+    color: var(--accent-cyan);
+    border-left-color: rgba(102, 136, 128, 0.4);
+    background: rgba(102, 136, 128, 0.03);
+}
+
+[data-theme="forbidden-tome"] #terminal-output .message.kp {
+    color: var(--text-primary);
+    background: rgba(200, 160, 64, 0.02);
+    border: 1px solid rgba(200, 160, 64, 0.06);
+    border-radius: 2px;
+    font-style: italic;
+    line-height: 2;
+}
+
+[data-theme="forbidden-tome"] #terminal-output .message.player {
+    color: var(--accent-amber);
+    border-left-color: rgba(200, 160, 64, 0.5);
+    background: rgba(200, 160, 64, 0.03);
+}
+
+[data-theme="forbidden-tome"] #terminal-output .message.error {
+    color: var(--accent-red);
+    border-left-color: rgba(204, 34, 51, 0.5);
+    background: rgba(204, 34, 51, 0.05);
+}
+
+[data-theme="forbidden-tome"] #terminal-output .message.warning {
+    color: var(--accent-amber);
+    border-left-color: rgba(200, 160, 64, 0.5);
+    background: rgba(200, 160, 64, 0.04);
+}
+
+[data-theme="forbidden-tome"] #terminal-output .message.success {
+    color: var(--accent-green);
+    border-left-color: rgba(136, 170, 102, 0.4);
+    background: rgba(136, 170, 102, 0.03);
+}
+
+[data-theme="forbidden-tome"] .quick-options {
+    background: var(--bg-tertiary);
+    border: 1px solid #301820;
+    border-radius: 3px;
+}
+
+[data-theme="forbidden-tome"] .quick-options .option-btn {
+    border: 1px solid #301820;
+    border-radius: 2px;
+    font-family: 'Noto Serif SC', serif;
+}
+
+[data-theme="forbidden-tome"] .quick-options .option-btn:hover {
+    background: rgba(200, 160, 64, 0.06);
+    border-color: rgba(200, 160, 64, 0.25);
+    color: var(--accent-amber);
+    transform: translateX(4px);
+}
+
+[data-theme="forbidden-tome"] .quick-options .option-btn::before {
+    content: '◈';
+    color: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] #input-area {
+    background: var(--bg-secondary);
+    border-top: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] #input-area::before {
+    background: linear-gradient(90deg, transparent, rgba(200, 160, 64, 0.08), rgba(204, 34, 51, 0.04), transparent);
+}
+
+[data-theme="forbidden-tome"] #input-prompt {
+    color: var(--accent-red);
+    text-shadow: 0 0 10px rgba(204, 34, 51, 0.4);
+}
+
+[data-theme="forbidden-tome"] #terminal-input {
+    font-family: 'Noto Serif SC', serif;
+    caret-color: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] #send-btn {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    border-radius: 3px;
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 2px;
+}
+
+[data-theme="forbidden-tome"] #send-btn:hover {
+    background: rgba(204, 34, 51, 0.08);
+    box-shadow: 0 0 16px rgba(204, 34, 51, 0.15);
+}
+
+[data-theme="forbidden-tome"] #sidebar {
+    background: var(--bg-secondary);
+    border-left: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] #sidebar::before {
+    background: linear-gradient(180deg, rgba(204, 34, 51, 0.08), transparent 30%, transparent 70%, rgba(200, 160, 64, 0.04));
+}
+
+[data-theme="forbidden-tome"] #sidebar-tabs {
+    background: var(--bg-card);
+    border-bottom: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] #sidebar-tabs .tab {
+    font-family: 'Noto Serif SC', serif;
+}
+
+[data-theme="forbidden-tome"] #sidebar-tabs .tab.active {
+    color: var(--accent-amber);
+    border-bottom-color: var(--accent-amber);
+    text-shadow: 0 0 8px rgba(200, 160, 64, 0.2);
+}
+
+[data-theme="forbidden-tome"] .sidebar-section .section-title {
+    color: var(--accent-amber);
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 3px;
+    font-size: 11px;
+}
+
+[data-theme="forbidden-tome"] .sidebar-section .section-title::before {
+    background: var(--accent-red);
+    box-shadow: 0 0 6px rgba(204, 34, 51, 0.4);
+    width: 3px;
+    height: 12px;
+}
+
+[data-theme="forbidden-tome"] .stat-item {
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+}
+
+[data-theme="forbidden-tome"] .stat-item .stat-value {
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .stat-item .stat-value.high {
+    color: var(--accent-green);
+}
+
+[data-theme="forbidden-tome"] .stat-item .stat-value.warning {
+    color: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] .stat-item .stat-value.low {
+    color: var(--accent-red);
+    opacity: 0.7;
+}
+
+[data-theme="forbidden-tome"] .vital-bar .vital-label {
+    color: var(--text-dim);
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 2px;
+}
+
+[data-theme="forbidden-tome"] .vital-bar.hp .bar-fill {
+    background: linear-gradient(90deg, #8a1020, var(--accent-amber));
+    box-shadow: 0 0 10px rgba(204, 34, 51, 0.25);
+}
+
+[data-theme="forbidden-tome"] .vital-bar.san .bar-fill {
+    background: linear-gradient(90deg, var(--accent-purple), #6644aa);
+    box-shadow: 0 0 10px rgba(136, 68, 170, 0.25);
+}
+
+[data-theme="forbidden-tome"] .vital-bar.mp .bar-fill {
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    box-shadow: 0 0 10px rgba(102, 136, 170, 0.2);
+}
+
+[data-theme="forbidden-tome"] .vital-bar .bar-fill.critical {
+    animation: tomeCritical 1.5s ease-in-out infinite;
+}
+
+@keyframes tomeCritical {
+    0%, 100% { opacity: 1; filter: none; }
+    50% { opacity: 0.7; filter: brightness(1.3); }
+}
+
+[data-theme="forbidden-tome"] .clue-item {
+    color: var(--accent-amber);
+    border-left-color: var(--accent-amber);
+    background: rgba(200, 160, 64, 0.03);
+    border-radius: 0 2px 2px 0;
+}
+
+[data-theme="forbidden-tome"] .clue-item::before {
+    content: '☽';
+}
+
+[data-theme="forbidden-tome"] .companion-card {
+    background: var(--bg-tertiary);
+    border: 1px solid #301820;
+    border-radius: 3px;
+}
+
+[data-theme="forbidden-tome"] .companion-card:hover {
+    border-color: rgba(200, 160, 64, 0.2);
+}
+
+[data-theme="forbidden-tome"] .companion-card .companion-name {
+    color: var(--accent-amber);
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 1px;
+}
+
+[data-theme="forbidden-tome"] .companion-card .companion-name::before {
+    content: '⚜';
+}
+
+[data-theme="forbidden-tome"] .notes-area {
+    background: var(--bg-tertiary);
+    border: 1px solid #301820;
+    border-radius: 3px;
+    font-family: 'Noto Serif SC', serif;
+}
+
+[data-theme="forbidden-tome"] .notes-area:focus {
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 2px rgba(204, 34, 51, 0.06);
+}
+
+[data-theme="forbidden-tome"] .settings-modal {
+    border-radius: 4px;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.8), 0 0 2px rgba(204, 34, 51, 0.08);
+}
+
+[data-theme="forbidden-tome"] .settings-modal-header {
+    background: linear-gradient(180deg, var(--bg-card) 0%, rgba(22, 14, 18, 0.95) 100%);
+    border-bottom: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] .settings-modal-header::after {
+    background: linear-gradient(90deg, transparent, rgba(200, 160, 64, 0.1), rgba(204, 34, 51, 0.05), transparent);
+}
+
+[data-theme="forbidden-tome"] .settings-modal-title .logo-icon {
+    color: var(--accent-amber);
+    text-shadow: 0 0 16px rgba(200, 160, 64, 0.5);
+}
+
+[data-theme="forbidden-tome"] .settings-modal-title h2 {
+    color: var(--accent-amber);
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(200, 160, 64, 0.25);
+}
+
+[data-theme="forbidden-tome"] .tab-nav {
+    background: var(--bg-card);
+    border-bottom: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] .tab-nav::after {
+    background: linear-gradient(90deg, transparent, rgba(200, 160, 64, 0.06), transparent);
+}
+
+[data-theme="forbidden-tome"] .tab-btn {
+    font-family: 'Noto Serif SC', serif;
+}
+
+[data-theme="forbidden-tome"] .tab-btn.active {
+    color: var(--accent-amber);
+    border-bottom-color: var(--accent-amber);
+    text-shadow: 0 0 8px rgba(200, 160, 64, 0.15);
+}
+
+[data-theme="forbidden-tome"] .form-input,
+[data-theme="forbidden-tome"] .form-select {
+    background: var(--bg-input);
+    border: 1px solid #301820;
+    border-radius: 3px;
+    font-family: 'Noto Serif SC', serif;
+}
+
+[data-theme="forbidden-tome"] .form-input:focus,
+[data-theme="forbidden-tome"] .form-select:focus {
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 3px rgba(204, 34, 51, 0.06), 0 0 12px rgba(204, 34, 51, 0.04);
+}
+
+[data-theme="forbidden-tome"] .slider::-webkit-slider-thumb {
+    background: var(--accent-red);
+    box-shadow: 0 0 10px rgba(204, 34, 51, 0.35);
+}
+
+[data-theme="forbidden-tome"] .slider::-webkit-slider-thumb:hover {
+    background: #ee3344;
+    box-shadow: 0 0 18px rgba(204, 34, 51, 0.5);
+}
+
+[data-theme="forbidden-tome"] .btn {
+    border-radius: 3px;
+    font-family: 'Noto Serif SC', serif;
+}
+
+[data-theme="forbidden-tome"] .btn-accent {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] .btn-accent:hover {
+    background: rgba(204, 34, 51, 0.08);
+    box-shadow: 0 0 12px rgba(204, 34, 51, 0.15);
+}
+
+[data-theme="forbidden-tome"] .btn-primary {
+    border-color: var(--accent-amber);
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .btn-primary:hover {
+    background: rgba(200, 160, 64, 0.08);
+    box-shadow: 0 0 12px rgba(200, 160, 64, 0.15);
+}
+
+[data-theme="forbidden-tome"] .btn-close-modal:hover {
+    color: var(--accent-red);
+    background: rgba(204, 34, 51, 0.08);
+}
+
+[data-theme="forbidden-tome"] .dice-modal-content {
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 2px rgba(204, 34, 51, 0.08);
+}
+
+[data-theme="forbidden-tome"] .dice-modal-title {
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 3px;
+    text-shadow: 0 0 14px rgba(200, 160, 64, 0.35);
+}
+
+[data-theme="forbidden-tome"] .dice-roll-btn {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    background: linear-gradient(135deg, rgba(204, 34, 51, 0.1), rgba(204, 34, 51, 0.03));
+    font-family: 'Uncial Antiqua', serif;
+    letter-spacing: 4px;
+}
+
+[data-theme="forbidden-tome"] .dice-roll-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(204, 34, 51, 0.18), rgba(204, 34, 51, 0.06));
+    box-shadow: 0 6px 24px rgba(204, 34, 51, 0.25);
+}
+
+[data-theme="forbidden-tome"] .dice-face {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    text-shadow: 0 0 12px rgba(204, 34, 51, 0.5);
+}
+
+[data-theme="forbidden-tome"] .dodge-btn.dodge {
+    background: rgba(136, 170, 102, 0.1);
+    border-color: rgba(136, 170, 102, 0.4);
+    color: var(--accent-green);
+}
+
+[data-theme="forbidden-tome"] .dodge-btn.take-hit {
+    background: rgba(204, 34, 51, 0.1);
+    border-color: rgba(204, 34, 51, 0.4);
+    color: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] .toast.success {
+    background: rgba(30, 50, 20, 0.9);
+    border-color: var(--accent-green);
+    color: #aacc88;
+}
+
+[data-theme="forbidden-tome"] .toast.error {
+    background: rgba(50, 10, 15, 0.9);
+    border-color: var(--accent-red);
+    color: #cc8888;
+}
+
+[data-theme="forbidden-tome"] .toast.info {
+    background: rgba(30, 20, 40, 0.9);
+    border-color: var(--accent-purple);
+    color: #bb88dd;
+}
+
+[data-theme="forbidden-tome"] .param-value {
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .section-header h2 {
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .form-fieldset {
+    border-color: #301820;
+}
+
+[data-theme="forbidden-tome"] .form-fieldset legend {
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .creation-container h2 {
+    color: var(--accent-amber);
+    font-family: 'Uncial Antiqua', serif;
+    text-shadow: 0 0 14px rgba(200, 160, 64, 0.35);
+}
+
+[data-theme="forbidden-tome"] .griefer-warning.level-1 {
+    background: rgba(200, 160, 64, 0.08);
+    border-color: rgba(200, 160, 64, 0.25);
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .griefer-warning.level-3 {
+    background: rgba(204, 34, 51, 0.1);
+    border-color: rgba(204, 34, 51, 0.3);
+    color: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] .griefer-warning.level-4 {
+    background: rgba(0, 0, 0, 0.85);
+    border-color: rgba(136, 68, 170, 0.3);
+    color: var(--accent-purple);
+}
+
+[data-theme="forbidden-tome"] .typing-cursor {
+    background: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] #terminal-output::before {
+    background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%);
+}
+
+[data-theme="forbidden-tome"] .dice-result-text.success {
+    color: var(--accent-green);
+    text-shadow: 0 0 20px rgba(136, 170, 102, 0.6);
+}
+
+[data-theme="forbidden-tome"] .dice-result-text.failure {
+    color: var(--accent-red);
+    text-shadow: 0 0 20px rgba(204, 34, 51, 0.6);
+}
+
+[data-theme="forbidden-tome"] .dice-result-text.critical {
+    color: var(--accent-amber);
+    text-shadow: 0 0 20px rgba(200, 160, 64, 0.6);
+}
+
+[data-theme="forbidden-tome"] .dice-result-text.fumble {
+    color: var(--accent-purple);
+    text-shadow: 0 0 20px rgba(136, 68, 170, 0.6);
+}
+
+[data-theme="forbidden-tome"] ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+[data-theme="forbidden-tome"] ::-webkit-scrollbar-thumb {
+    background: #301820;
+}
+
+[data-theme="forbidden-tome"] ::-webkit-scrollbar-thumb:hover {
+    background: #4a2830;
+}
+
+[data-theme="forbidden-tome"] .vital-bar .bar-fill::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(204, 34, 51, 0.06) 50%, transparent 100%);
+}
+
+[data-theme="forbidden-tome"] .param-item {
+    border: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] .param-item:hover {
+    border-color: rgba(200, 160, 64, 0.12);
+}
+
+[data-theme="forbidden-tome"] .param-number {
+    color: var(--accent-amber);
+    border: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] .param-number:focus {
+    border-color: var(--accent-red);
+}
+
+[data-theme="forbidden-tome"] .badge-coming {
+    background: rgba(200, 160, 64, 0.1);
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .notes-summary {
+    border: 1px solid rgba(200, 160, 64, 0.04);
+}
+
+[data-theme="forbidden-tome"] .form-actions {
+    border-top: 1px solid #301820;
+}
+
+[data-theme="forbidden-tome"] .combo-dropdown li:hover {
+    background: rgba(200, 160, 64, 0.06);
+    color: var(--accent-amber);
+}
+
+[data-theme="forbidden-tome"] .combo-dropdown li.selected {
+    color: var(--accent-amber);
+    background: rgba(200, 160, 64, 0.04);
+}

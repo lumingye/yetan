@@ -1,0 +1,78 @@
+# Environment & Secrets
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Dependencies
+node_modules/
+bower_components/
+vendor/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build & Cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Desktop.ini
+
+# Reference files (not part of the project)
+参考文件/
+参考模组/
+
+# Test & Demo
+test-e2e.js
+ui-test.html
+
+# Docs (optional, uncomment if needed)
+# 产品概述.md
+
+# Archive
+*.zip
+
+# Docs (暂不上传)
+docs/
+
+# 工作日志（内部）
+WORKLOG.md
+
+# Outputs (非必要)
+outputs/
+
+# 参考模组（非必要）
+coc-kp-skill-compact.md
+coc-kp-writing-guide.md
+产品概述.md
+参考模组/

@@ -1,0 +1,380 @@
+{
+  "id": "night-whisper",
+  "name": "暗夜呢喃",
+  "version": "1.0",
+  "era": "1920s",
+  "setting": "阿卡姆及周边地区",
+  "description": "阿卡姆大学霍普金斯教授失踪了。他的书房里留下了奇怪的笔记和海图。海岸线附近传来低沉的呢喃声。调查员必须在月圆之夜之前揭开真相。",
+  "startChapter": "海边的低语",
+  "startGoal": "调查霍普金斯教授的失踪",
+  "startTime": {
+    "year": 1928,
+    "month": 10,
+    "day": 17,
+    "hour": 9,
+    "minute": 0,
+    "period": "morning"
+  },
+  "doomsdayClocks": [
+    {
+      "id": "full_moon_ritual",
+      "year": 1928,
+      "month": 10,
+      "day": 21,
+      "hour": 0,
+      "minute": 0,
+      "description": "新月之夜，深海之门将开启",
+      "triggered": false,
+      "endingId": "gate_opened",
+      "graceTurns": 3
+    }
+  ],
+  "chapters": [
+    {
+      "id": "ch1",
+      "title": "海边的低语",
+      "phase": "prologue",
+      "description": "调查员接到委托，前往阿卡姆调查霍普金斯教授的失踪。在教授的书房中发现线索。",
+      "keyClues": [
+        "教授的日记",
+        "海图上的标记",
+        "奇怪的电话记录"
+      ],
+      "events": [
+        "meet_margaret",
+        "discover_study",
+        "phone_call"
+      ]
+    },
+    {
+      "id": "ch2",
+      "title": "潮汐之下",
+      "phase": "investigation",
+      "description": "调查员追踪线索前往海岸线。渔村中流传着古老的传说，灯塔看守人行为怪异。",
+      "keyClues": [
+        "渔村传说",
+        "灯塔日志",
+        "海底洞穴入口"
+      ],
+      "events": [
+        "visit_village",
+        "lighthouse_keeper",
+        "cave_entrance"
+      ]
+    },
+    {
+      "id": "ch3",
+      "title": "深渊的呢喃",
+      "phase": "approaching_truth",
+      "description": "调查员进入海底洞穴，发现邪教徒的集会场所。教授可能还活着，但时间不多了。",
+      "keyClues": [
+        "邪教仪式记录",
+        "教授的囚室",
+        "召唤法术"
+      ],
+      "events": [
+        "cult_encounter",
+        "find_professor",
+        "ritual_preparation"
+      ]
+    },
+    {
+      "id": "ch4",
+      "title": "新月之夜",
+      "phase": "climax",
+      "description": "月圆之夜，邪教徒准备完成召唤仪式。调查员必须阻止灾难发生。",
+      "keyClues": [],
+      "events": [
+        "final_ritual",
+        "boss_encounter",
+        "ending"
+      ]
+    }
+  ],
+  "npcs": [
+    {
+      "name": "玛格丽特·霍普金斯",
+      "type": "client",
+      "role": "委托人/教授之女",
+      "description": "20多岁的年轻女性，深色长发，眼眶红肿。说话时声音压抑但坚定。",
+      "hp": 8,
+      "hpMax": 8,
+      "san": 55,
+      "sanMax": 55,
+      "dex": 50,
+      "str": 40,
+      "app": 65,
+      "skills": {
+        "说服": 40,
+        "心理学": 30,
+        "聆听": 45,
+        "图书馆使用": 35
+      },
+      "location": "阿卡姆大学",
+      "attitude": "焦急",
+      "personality": {
+        "openness": 7,
+        "extraversion": 6,
+        "neuroticism": 8,
+        "want": "找到父亲，确认他还活着",
+        "wound": "母亲早逝，父亲是她唯一的亲人",
+        "voice": "压抑但坚定，偶尔情绪崩溃，用词正式"
+      }
+    },
+    {
+      "name": "老汤姆·惠特克",
+      "type": "professional",
+      "role": "灯塔看守人",
+      "description": "60多岁的老人，皮肤被海风和阳光刻满皱纹。眼神中有一种说不清的恐惧。",
+      "hp": 10,
+      "hpMax": 10,
+      "san": 25,
+      "sanMax": 45,
+      "dex": 35,
+      "str": 45,
+      "app": 30,
+      "skills": {
+        "导航": 60,
+        "机械维修": 50,
+        "聆听": 55,
+        "自然学": 40,
+        "神秘学": 25
+      },
+      "location": "灯塔",
+      "attitude": "恐惧",
+      "personality": {
+        "openness": 3,
+        "extraversion": 2,
+        "neuroticism": 7,
+        "want": "摆脱灯塔日志中记录的噩梦",
+        "wound": "亲眼看见前任看守人走入海中失踪",
+        "voice": "简短、回避、喃喃自语，常提到潮汐和风向"
+      }
+    },
+    {
+      "name": "莎拉·米切尔",
+      "type": "professional",
+      "role": "警局档案室管理员",
+      "description": "30多岁的女性，戴着圆框眼镜，对档案了如指掌。",
+      "hp": 9,
+      "hpMax": 9,
+      "san": 60,
+      "sanMax": 60,
+      "dex": 45,
+      "str": 35,
+      "app": 50,
+      "skills": {
+        "图书馆使用": 65,
+        "法律": 40,
+        "历史": 45,
+        "聆听": 35
+      },
+      "location": "阿卡姆警局",
+      "attitude": "配合",
+      "personality": {
+        "openness": 5,
+        "extraversion": 4,
+        "neuroticism": 3,
+        "want": "维护档案室的秩序，暗中帮助正义一方",
+        "wound": "父亲是警察，因坚持正义殉职",
+        "voice": "冷静、精确、公事公办，但关键时刻会透露额外信息"
+      }
+    },
+    {
+      "name": "罗伯特·莫里斯",
+      "type": "enemy",
+      "role": "邪教领袖",
+      "description": "40多岁，面容消瘦，眼神狂热。穿着考究但举止怪异。",
+      "hp": 12,
+      "hpMax": 12,
+      "san": 0,
+      "sanMax": 0,
+      "dex": 55,
+      "str": 50,
+      "app": 45,
+      "skills": {
+        "神秘学": 70,
+        "说服": 55,
+        "心理学": 50,
+        "克苏鲁神话": 35
+      },
+      "location": "海底洞穴",
+      "attitude": "敌对",
+      "personality": {
+        "openness": 6,
+        "extraversion": 7,
+        "neuroticism": 4,
+        "want": "完成新月仪式，唤醒海中之物",
+        "wound": "年轻时目睹亲人被海难吞没，从而转向邪神信仰",
+        "voice": "考究、礼貌、传教式，用隐喻和经文式语言"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "name": "阿卡姆大学",
+      "description": "古老的常春藤覆盖的建筑群，霍普金斯教授的办公室在历史系三楼。",
+      "region": "阿卡姆城区",
+      "connections": [
+        "阿卡姆警局",
+        "教授住宅"
+      ]
+    },
+    {
+      "name": "教授住宅",
+      "description": "维多利亚风格的两层小楼，书房凌乱不堪，空气中弥漫着旧书和咸腥的海水味。",
+      "region": "阿卡姆城区",
+      "connections": [
+        "阿卡姆大学"
+      ]
+    },
+    {
+      "name": "阿卡姆警局",
+      "description": "红砖建筑，档案室在地下室。米切尔女士是唯一愿意帮忙的人。",
+      "region": "阿卡姆城区",
+      "connections": [
+        "阿卡姆大学",
+        "渔村"
+      ]
+    },
+    {
+      "name": "渔村",
+      "description": "海岸线旁的小村庄，空气中弥漫着鱼腥味。村民们对陌生人充满警惕。",
+      "region": "海岸线",
+      "connections": [
+        "阿卡姆警局",
+        "灯塔",
+        "海岸洞穴"
+      ]
+    },
+    {
+      "name": "灯塔",
+      "description": "矗立在悬崖上的白色灯塔，看守人惠特克先生最近行为越来越古怪。",
+      "region": "海岸线",
+      "connections": [
+        "渔村"
+      ]
+    },
+    {
+      "name": "海岸洞穴",
+      "description": "退潮时才能进入的洞穴，入口被海藻覆盖。洞穴深处传来低沉的呢喃声。",
+      "region": "海岸线",
+      "connections": [
+        "渔村"
+      ]
+    }
+  ],
+  "introNarrative": "1928年10月17日。阿卡姆的秋天总是来得格外阴冷。\n\n雨水顺着窗玻璃滑下，模糊了街对面的煤气灯。阿卡姆大学历史系的走廊里弥漫着旧书和地板蜡的气味。\n\n玛格丽特·霍普金斯站在走廊尽头，手指绞在一起。她的眼眶红肿，但声音出奇地平静：\n\n「三天了。父亲失踪三天了。警方说他可能只是出去散步——但你们和我一样知道，那不是真的。」\n\n她从手提包里取出一把钥匙，递向你。\n\n「这是他书房的钥匙。拜托了。」\n\n窗外，雨忽然下得更大了。",
+  "kpNotesGlobal": "《暗夜呢喃》正式模组。整体基调：缓慢上升的海洋恐怖，调查为主，战斗稀少且危险。时间硬规则：1928年10月21日00:00（新月之夜）深海之门开启，仪式完成则结局锁定gate_opened；10月20日入夜后必须显著压缩行动空间。阶段标记规则：达成各阶段推进条件时在回复末尾输出对应[STAGE_FLAG:flag名]（半角方括号半角冒号）；只有当前阶段推进条件满足且叙事自然过渡时才输出[STAGE_ADVANCE]，禁止连发。核心NPC仅限：玛格丽特·霍普金斯、老汤姆·惠特克、莎拉·米切尔、罗伯特·莫里斯、霍普金斯教授；可有无名路人但不得给路人完整姓名与持续戏份。结局达成时给出2-4段收束叙事（至少回收一件前期伏笔）并在末尾输出[ENDING:对应id]（半角），输出后游戏结束。",
+  "progressStages": [
+    {
+      "name": "阿卡姆的线索",
+      "description": "在大学、教授住宅与警局之间收集线索，确认霍普金斯教授的失踪与海岸线的关联。",
+      "advanceConditions": [
+        {
+          "type": "flag",
+          "flag": "nw_clue_diary",
+          "description": "读到教授日记中关于呢喃声与潮汐的记录"
+        },
+        {
+          "type": "flag",
+          "flag": "nw_clue_seachart",
+          "description": "发现海图上被反复圈画的海岸标记"
+        },
+        {
+          "type": "flag",
+          "flag": "nw_clue_phone",
+          "description": "查到教授失踪前最后一通电话来自灯塔方向"
+        }
+      ],
+      "requiredConditions": 2,
+      "autoAdvance": false,
+      "kpDirective": "第一幕：委托与书房。玛格丽特在阿卡姆大学找到调查员，压抑但坚定地委托寻父。本幕只围绕大学、教授住宅书房、警局档案室展开：日记（提到夜里听见海的呢喃、新月将至）、海图（圈画渔村以北海岸）、电话记录（莎拉可查，最后通话来自灯塔公用线）。三条线索各自独立可得，玩家拿到任意一条时输出对应[STAGE_FLAG:]。本幕不出现邪教徒正面接触，最多一次被注视/被跟踪的暗示。不提海底洞穴与仪式细节。"
+    },
+    {
+      "name": "海岸线追踪",
+      "description": "前往渔村与灯塔，从传说、灯塔日志与潮汐规律中找到海底洞穴的入口。",
+      "advanceConditions": [
+        {
+          "type": "flag",
+          "flag": "nw_village_legend",
+          "description": "听到渔村关于新月与海中之物的传说",
+          "keywords": "(村民|渔民|老人|酒馆|渔村)[^\\n]{0,50}(新月|海里|海中|传说|忌讳|不出海)|传说[^\\n]{0,30}(新月|海中之物|海里的东西)"
+        },
+        {
+          "type": "flag",
+          "flag": "nw_lighthouse_log",
+          "description": "看到老汤姆的灯塔日志中关于呢喃与失踪的记录",
+          "keywords": "灯塔(的)?日志|日志[^\\n]{0,30}(呢喃|失踪|潮汐)"
+        },
+        {
+          "type": "flag",
+          "flag": "nw_cave_entrance",
+          "description": "确认退潮时显露的海底洞穴入口位置",
+          "keywords": "(退潮|潮水退|低潮)[^\\n]{0,30}(洞穴|洞口|入口)|洞穴(的)?入口[^\\n]{0,20}(位置|显露|露出|就在)"
+        }
+      ],
+      "requiredConditions": 2,
+      "autoAdvance": false,
+      "kpDirective": "第二幕：渔村与灯塔。村民口风紧、回避新月话题，恐惧是日常化的（门上的护符、提前收网）。老汤姆是关键证人：白天回避、入夜后或取得信任后吐露，灯塔日志记录了呢喃声随潮汐增强、历年新月前后的失踪。洞穴入口只在退潮时显露（每日两次，KP掌握潮汐表制造时间压力）。本幕可有邪教徒暗中警告或跟踪事件，不发生洞穴内战斗。玩家拿到对应线索时输出[STAGE_FLAG:]。"
+    },
+    {
+      "name": "深渊洞穴",
+      "description": "进入海底洞穴，找到被囚的教授，弄清新月仪式的时间与方法。",
+      "advanceConditions": [
+        {
+          "type": "flag",
+          "flag": "nw_professor_found",
+          "description": "找到霍普金斯教授（无论其状态如何）",
+          "keywords": "(找到|发现|看见)[^\\n]{0,15}(霍普金斯)?教授|教授[^\\n]{0,15}(被囚|被绑|蜷缩|虚弱)"
+        },
+        {
+          "type": "flag",
+          "flag": "nw_ritual_known",
+          "description": "得知仪式将于新月午夜举行及其大致方法",
+          "keywords": "仪式[^\\n]{0,25}(新月|午夜|子夜)|新月午夜[^\\n]{0,15}仪式"
+        }
+      ],
+      "requiredConditions": 2,
+      "autoAdvance": false,
+      "kpDirective": "第三幕：洞穴潜入。压迫感来自空间（涨潮倒计时、狭窄通道、回声）而非怪物刷脸。邪教徒有巡逻规律，可潜行绕过也可冲突（冲突危险，人数劣势）。教授被囚但状态留伏笔：虚弱的他对仪式知道得太多，言辞间已有狂热的裂缝。罗伯特·莫里斯可在此幕首次正面出现，考究、礼貌、传教式地劝调查员留下来见证。本幕结束前必须让玩家知道：仪式在新月午夜，地点就在祭坛。"
+    },
+    {
+      "name": "新月之夜",
+      "description": "新月午夜将至，在深海之门开启前做出选择。",
+      "advanceConditions": [],
+      "autoAdvance": true,
+      "kpDirective": "终幕：阻止或见证。仪式阻止战允许多解：破坏祭坛、带走教授釜底抽薪、与罗伯特对峙、利用涨潮淹没洞穴等，奖励玩家利用前期线索（潮汐规律、灯塔灯光、教授知道的仪式弱点）。结局：打断仪式且教授生还→[ENDING:ritual_stopped]；教授以自身为代价打断仪式→[ENDING:professor_sacrifice]；仪式完成→[ENDING:gate_opened]；调查员放弃并撤离→[ENDING:escaped]。结局叙事2-4段，至少回收一件伏笔（日记、灯塔日志、玛格丽特的等待）。标记用半角[ENDING:id]。"
+    }
+  ],
+  "endings": [
+    {
+      "id": "ritual_stopped",
+      "title": "退潮",
+      "condition": "打断仪式且教授生还",
+      "description": "呢喃声随潮水退去。教授再没有谈起过那片海，但他书房的海图上，那个标记被墨水涂黑了。",
+      "actionPattern": "(破坏|砸|推倒|掀翻|凿|毁)[^\\n]{0,10}祭坛|打断仪式|阻止仪式|(救出|救走|带走|背起)[^\\n]{0,8}教授"
+    },
+    {
+      "id": "professor_sacrifice",
+      "title": "守夜人",
+      "condition": "教授以自身为代价打断仪式",
+      "description": "玛格丽特收到的遗物只有一本日记，最后一页写着：它需要一个懂它的人留在门边。",
+      "actionPattern": "(让|由)教授[^\\n]{0,12}(留下|代替|牺牲|献祭|自己来)|教授(留下|代替我|牺牲自己)"
+    },
+    {
+      "id": "gate_opened",
+      "title": "新月",
+      "condition": "仪式完成，深海之门开启",
+      "description": "那天夜里没有月亮。从此阿卡姆的海岸线上，退潮也听得见呢喃。",
+      "actionPattern": "(见证|旁观|任由|不阻止|看着)[^\\n]{0,10}仪式(完成|继续)?|袖手旁观"
+    },
+    {
+      "id": "escaped",
+      "title": "离岸",
+      "condition": "调查员放弃并撤离",
+      "description": "调查员连夜离开了阿卡姆。多年后在报纸角落读到渔村废弃的消息时，窗外正是新月。",
+      "actionPattern": "(放弃|撤离|逃离|逃出|离开)[^\\n]{0,8}(洞穴|祭坛|这里|阿卡姆)|放弃[^\\n]{0,6}(撤离|离开|营救|教授)|转身(离开|就逃)|撤退"
+    }
+  ]
+}
