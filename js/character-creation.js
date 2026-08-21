@@ -140,6 +140,7 @@ const CharacterCreation = {
 
     renderStep() {
         const container = document.getElementById('creation-container');
+        container.setAttribute('data-step', String(this.currentStep + 1));
 
         // 步骤进度条
         const stepIndicator = this.stepNames.map((name, i) => {
@@ -152,10 +153,14 @@ const CharacterCreation = {
             return html;
         }).join('');
 
-        let html = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-            <h2 class="cc-title">调查员档案</h2>
-            <button class="nav-btn" id="btn-close-creation" style="font-size:12px;padding:4px 12px;">✕ 关闭</button>
-        </div>
+        let html = `<header class="cc-shell-head">
+            <button class="cc-shell-back" id="btn-close-creation">‹ 退出车卡</button>
+            <div class="cc-shell-heading">
+                <span>Investigator Record</span>
+                <h2>调查员档案</h2>
+            </div>
+            <div class="cc-shell-count">STEP ${String(this.currentStep + 1).padStart(2, '0')} / ${String(this.totalSteps).padStart(2, '0')}</div>
+        </header>
         <div class="cc-stepper">${stepIndicator}</div>`;
 
         switch (this.currentStep) {
@@ -954,9 +959,9 @@ const CharacterCreation = {
         html += `<div class="cc-final-header">`;
         html += `<div class="cc-final-portrait">`;
         html += `<div id="char-portrait-area" class="cc-final-portrait-box">`;
-        html += `<span style="font-size:11px;color:var(--text-secondary);text-align:center;padding:8px;">点击下方生成立绘</span>`;
+        html += `<span class="cc-portrait-placeholder">点击下方生成立绘</span>`;
         html += `</div>`;
-        html += `<button class="nav-btn" id="btn-gen-portrait" style="font-size:11px;padding:4px 10px;margin-top:6px;width:100%;">🎨 生成立绘</button>`;
+        html += `<button class="nav-btn cc-portrait-action" id="btn-gen-portrait">🎨 生成立绘</button>`;
         html += `</div>`;
         html += `<div class="cc-final-info">`;
         html += `<div class="cc-final-name">${name}</div>`;
@@ -965,7 +970,7 @@ const CharacterCreation = {
             html += `<div class="cc-final-desc">${appearance}</div>`;
         }
         if (personality) {
-            html += `<div class="cc-final-desc" style="margin-top:4px;">${personality}</div>`;
+            html += `<div class="cc-final-desc cc-final-personality">${personality}</div>`;
         }
         html += `</div></div>`;
 
@@ -990,8 +995,8 @@ const CharacterCreation = {
         html += `</div>`;
 
         if (ageSummary.length > 0) {
-            html += `<div style="margin-top:12px;padding:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.03);font-size:12px;color:var(--text-secondary);line-height:1.6;">`;
-            html += `<div style="color:var(--accent-cyan);font-weight:700;margin-bottom:4px;">年龄修正预告</div>`;
+            html += `<div class="cc-age-preview">`;
+            html += `<div class="cc-age-preview-title">年龄修正预告</div>`;
             ageSummary.forEach(line => { html += `<div>${line}</div>`; });
             html += `</div>`;
         }
@@ -1046,7 +1051,7 @@ const CharacterCreation = {
     renderNavigation() {
         let html = `<div class="cc-nav">`;
         html += `<button class="nav-btn" id="btn-prev" ${this.currentStep === 0 ? 'disabled' : ''}>← 上一步</button>`;
-        html += `<div style="display:flex;gap:8px;">`;
+        html += `<div class="cc-nav-actions">`;
         if (this.currentStep < this.totalSteps - 1) {
             html += `<button class="nav-btn primary" id="btn-next">下一步 →</button>`;
         } else {
