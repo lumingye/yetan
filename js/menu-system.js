@@ -1,3 +1,16 @@
+// 主菜单素材：几何徽记（abyss 降级用）与 cthulhu 蜡笔涂鸦母题，取自设计稿。
+const MENU_APP_VERSION = 'v2.0';
+
+const MENU_CREST_SVG = '<svg class="m-crest" viewBox="0 0 64 64" fill="none" stroke-width="1.4" aria-hidden="true">'
+    + '<circle class="ring" cx="32" cy="32" r="27" stroke="currentColor"/>'
+    + '<rect class="dia-o" x="32" y="9" width="32.5" height="32.5" transform="rotate(45 32 9)" stroke="currentColor"/>'
+    + '<rect class="dia-i" x="32" y="18" width="19.8" height="19.8" transform="rotate(45 32 18)"/>'
+    + '<circle class="moon" cx="32" cy="32" r="4.5"/>'
+    + '<path class="wing" d="M14 32c6-7 12-7 18 0M50 32c-6 7-12 7-18 0"/>'
+    + '</svg>';
+
+const MENU_CTHULHU_SCRAWL = '<svg class="m-cth" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" fill="none"> <defs> <radialGradient id="wetfill" cx="48%" cy="40%" r="62%"> <stop offset="0%" stop-color="#021712" stop-opacity=".66"></stop> <stop offset="55%" stop-color="#03190f" stop-opacity=".42"></stop> <stop offset="80%" stop-color="#010c08" stop-opacity=".6"></stop> <stop offset="100%" stop-color="#021712" stop-opacity="0"></stop> </radialGradient> <radialGradient id="biofill" cx="50%" cy="50%" r="60%"> <stop offset="0%" stop-color="#103a31" stop-opacity=".5"></stop> <stop offset="70%" stop-color="#0a241e" stop-opacity=".2"></stop> <stop offset="100%" stop-color="#0a241e" stop-opacity="0"></stop> </radialGradient> <filter id="wet" x="-35%" y="-35%" width="170%" height="170%"> <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="11" result="n"></feTurbulence> <feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap> </filter> <filter id="crayon" x="-20%" y="-20%" width="140%" height="140%"> <feTurbulence type="fractalNoise" baseFrequency="0.03 0.034" numOctaves="2" seed="4" result="warp"></feTurbulence> <feDisplacementMap in="SourceGraphic" in2="warp" scale="5.5" xChannelSelector="R" yChannelSelector="G" result="wavy"></feDisplacementMap> <feTurbulence type="turbulence" baseFrequency="0.55 0.6" numOctaves="2" seed="7" result="tex"></feTurbulence> <feColorMatrix in="tex" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.35 1.04" result="texA"></feColorMatrix> <feComposite in="wavy" in2="texA" operator="in"></feComposite> </filter> </defs> <!-- WET STAINS · tide lines · drips --> <g filter="url(#wet)"> <ellipse cx="138" cy="152" rx="150" ry="116" fill="url(#wetfill)"></ellipse> <ellipse cx="138" cy="152" rx="130" ry="98" stroke="#010b07" stroke-opacity=".5" stroke-width="6"></ellipse> <ellipse cx="150" cy="508" rx="208" ry="156" fill="url(#wetfill)"></ellipse> <ellipse cx="150" cy="508" rx="182" ry="135" stroke="#010b07" stroke-opacity=".6" stroke-width="8"></ellipse> <ellipse cx="864" cy="118" rx="156" ry="126" fill="url(#wetfill)"></ellipse> <ellipse cx="864" cy="118" rx="132" ry="104" stroke="#010b07" stroke-opacity=".56" stroke-width="7"></ellipse> <ellipse cx="640" cy="566" rx="214" ry="122" fill="url(#biofill)"></ellipse> <ellipse cx="116" cy="610" rx="12" ry="90" fill="url(#wetfill)"></ellipse> <ellipse cx="196" cy="622" rx="9" ry="68" fill="url(#wetfill)"></ellipse> <ellipse cx="258" cy="594" rx="7" ry="52" fill="url(#wetfill)"></ellipse> <ellipse cx="296" cy="244" rx="8" ry="66" fill="url(#wetfill)"></ellipse> <ellipse cx="904" cy="258" rx="10" ry="84" fill="url(#wetfill)"></ellipse> <ellipse cx="820" cy="250" rx="7" ry="60" fill="url(#wetfill)"></ellipse> </g> <!-- HAND-DRAWN CRAYON DIARY --> <g filter="url(#crayon)" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity=".36"> <!-- the family — 妈妈 爸爸 我 …and the one who is gone --> <g transform="translate(2 20)"> <circle cx="80" cy="110" r="11"></circle> <path d="M80 121 V160 M61 133 Q80 141 99 131 M80 160 L66 186 M80 160 L94 186"></path> <circle cx="122" cy="112" r="10"></circle> <path d="M122 122 V158 M105 134 Q122 141 139 132 M122 158 L110 182 M122 158 L134 182"></path> <circle cx="158" cy="122" r="8"></circle> <path d="M158 130 V152 M146 138 Q158 144 170 137 M158 152 L149 172 M158 152 L167 172"></path> <g opacity=".45"> <circle cx="200" cy="116" r="10"></circle> <path d="M200 126 V160 M184 138 Q200 145 216 136 M200 160 L188 184 M200 160 L212 184"></path> </g> <!-- scribbled out, violently --> <path d="M180 100 L222 152 M222 100 L180 152 M178 124 L224 124 M201 96 L201 156 M184 106 Q212 120 216 142 Q218 158 188 150"></path> <!-- a frightened question --> <path d="M196 88 q3 -11 13 -7 q9 4 2 12 q-4 5 -8 7 M199 110 l0 1"></path> </g> <!-- counting the days — tally \'正\' style strokes --> <path d="M70 208 V232 M78 208 V232 M86 208 V232 M94 208 V232 M65 232 L99 208"></path> <path d="M114 208 V232 M122 208 V232 M130 208 V232 M138 208 V232 M109 232 L143 208"></path> <path d="M158 208 V232 M166 208 V232 M174 208 V232"></path> <!-- the house, drowning --> <path d="M58 470 V414 H162 V470 Z"></path> <path d="M48 414 L110 374 L172 414"></path> <path d="M96 470 V438 H122 V470"></path> <path d="M68 430 H90 V452 H68 Z M79 430 V452 M68 441 H90"></path> <circle cx="110" cy="362" r="6"></circle> <path d="M110 368 V382 M101 374 L95 362 M119 374 L125 362"></path> <path d="M34 452 q12 -7 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" opacity=".7"></path> <path d="M34 466 q12 -7 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" opacity=".7"></path> <path d="M34 480 q12 -7 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" opacity=".7"></path> <!-- someone is drowning --> <path d="M246 518 q14 -7 28 0 t28 0 t28 0 t28 0 t28 0 t28 0" opacity=".7"></path> <path d="M246 532 q14 -7 28 0 t28 0 t28 0 t28 0 t28 0 t28 0" opacity=".7"></path> <circle cx="272" cy="504" r="7"></circle> <path d="M262 510 L255 496 M282 510 L289 496"></path> <path d="M272 514 V532" opacity=".4"></path> <path d="M312 510 Q334 526 364 510 M312 510 H364 M338 510 V488 M338 490 L356 502 L338 502 Z"></path> <!-- the sun, but it is sad / wrong — nudged in toward center --> <g transform="translate(-95 44)"> <circle cx="832" cy="150" r="34"></circle> <path d="M832 104 V88 M832 196 V212 M878 150 H894 M786 150 H770 M865 117 L876 106 M799 183 L788 194 M865 183 L876 194 M799 117 L788 106"></path> <circle cx="820" cy="144" r="3.4"></circle> <circle cx="844" cy="144" r="3.4"></circle> <path d="M814 168 l7 7 l7 -7 l7 7 l7 -7"></path> </g> <!-- it is watching — a cluster of eyes --> <g> <path d="M844 316 Q862 302 880 316 Q862 330 844 316 Z"></path><circle cx="862" cy="316" r="5.4" fill="currentColor"></circle> <path d="M889 332 Q903 321 917 332 Q903 343 889 332 Z"></path><circle cx="903" cy="332" r="4.2" fill="currentColor"></circle> <path d="M831 354 Q846 342 861 354 Q846 366 831 354 Z"></path><circle cx="846" cy="354" r="4.6" fill="currentColor"></circle> <path d="M893 366 Q905 357 917 366 Q905 375 893 366 Z"></path><circle cx="905" cy="366" r="3.6" fill="currentColor"></circle> <path d="M864 340 Q874 333 884 340 Q874 347 864 340 Z"></path><circle cx="874" cy="340" r="3.2" fill="currentColor"></circle> </g> <!-- the thing that came up from the water --> <circle cx="812" cy="488" r="50"></circle> <circle cx="792" cy="474" r="7"></circle><circle cx="792" cy="475" r="2.4" fill="currentColor"></circle> <circle cx="830" cy="470" r="8"></circle><circle cx="830" cy="471" r="2.6" fill="currentColor"></circle> <circle cx="812" cy="498" r="6"></circle><circle cx="812" cy="499" r="2.2" fill="currentColor"></circle> <path d="M788 512 l8 9 l8 -9 l8 9 l8 -9 l8 9"></path> <path d="M796 442 L788 424 M828 442 L836 422"></path> <path d="M774 530 q-10 20 4 30 q14 8 2 28 M804 536 q6 20 -8 30 q-10 10 4 24 M836 532 q12 18 0 30 q-8 12 8 22 M854 518 q18 16 8 34"></path> <!-- a crooked arrow, pointing down to the water --> <path d="M150 252 q42 28 30 72 M178 312 l2 14 l11 -9" opacity=".5"></path> </g> </svg>';
+
 const MenuSystem = {
     currentScreen: 'main',
     selectedCase: null,
@@ -89,87 +102,113 @@ const MenuSystem = {
         return toIdx > fromIdx ? 'left' : 'right';
     },
 
-    renderMainScreen() {
+    // 主菜单条目 —— 设计稿的「案卷目录」四条，加上项目自有的试玩入口。
+    // meta 里的英文小标与设计稿一致；「继续」的 meta 走真实存档。
+    getMenuEntries() {
         var savedChar = this.getSavedCharacter();
         var savedProgress = this.getSavedProgress();
-        var currentTheme = document.documentElement.getAttribute('data-theme') || 'detective';
-        var hasSave = savedChar && (typeof Utils !== 'undefined' && Utils.loadFromStorage('scribe_autosave'));
+        var hasSave = !!(savedChar && typeof Utils !== 'undefined' && Utils.loadFromStorage('scribe_autosave'));
 
-        var html = '<div class="menu-screen main-menu">';
-
-        html += '<div class="main-menu-bg">';
-        html += '<div class="bg-particle p1"></div>';
-        html += '<div class="bg-particle p2"></div>';
-        html += '<div class="bg-particle p3"></div>';
-        html += '<div class="bg-particle p4"></div>';
-        html += '<div class="bg-particle p5"></div>';
-        html += '</div>';
-
-        html += '<div class="main-menu-content">';
-        html += '<div class="menu-title-area">';
-        html += '<div class="title-emblem">◈</div>';
-        html += '<h1 class="game-title-main">夜谭</h1>';
-        html += '<p class="game-subtitle">YE TAN</p>';
-        html += '<div class="title-divider"><span class="divider-line"></span><span class="divider-icon">☽</span><span class="divider-line"></span></div>';
-        html += '<p class="game-tagline">Call of Cthulhu · AI驱动的叙事终端</p>';
-        html += '</div>';
-
-        html += '<div class="main-menu-actions">';
-        html += '<button class="main-action-btn tutorial-action" id="btn-tutorial-demo">';
-        html += '<span class="action-icon">DEMO</span>';
-        html += '<div class="action-info"><span class="action-text">15分钟试玩</span><span class="action-desc">独立试玩档，可新开或读档继续；体验检定、线索、NPC与结局抉择</span></div>';
-        html += '<span class="action-arrow">›</span>';
-        html += '</button>';
-
-        html += '<button class="main-action-btn primary-action" id="btn-new-game">';
-        html += '<span class="action-icon">NEW</span>';
-        html += '<div class="action-info"><span class="action-text">新的调查</span><span class="action-desc">选择剧本，创建角色，开始冒险</span></div>';
-        html += '<span class="action-arrow">›</span>';
-        html += '</button>';
-
-        html += '<button class="main-action-btn ' + (hasSave ? '' : 'disabled') + '" id="btn-continue" ' + (hasSave ? '' : 'disabled') + '>';
-        html += '<span class="action-icon">LOAD</span>';
-        html += '<div class="action-info"><span class="action-text">继续调查</span><span class="action-desc">' + (hasSave ? '回到上次进度' : '暂无存档') + '</span></div>';
-        html += '<span class="action-arrow">' + (hasSave ? '›' : '') + '</span>';
-        html += '</button>';
-        html += '</div>';
-
-        if (savedChar) {
-            html += '<div class="saved-progress-card">';
-            html += '<div class="progress-card-header"><span class="progress-label">当前调查员</span><span class="progress-badge">进行中</span></div>';
-            html += '<div class="progress-card-body">';
-            html += '<div class="progress-avatar">' + (savedChar.name ? savedChar.name.charAt(0) : '?') + '</div>';
-            html += '<div class="progress-info">';
-            html += '<div class="progress-name">' + (savedChar.name || '无名调查员') + '</div>';
-            html += '<div class="progress-occ">' + (savedChar.occupation || '未知职业') + '</div>';
-            html += '<div class="progress-stats-row">';
-            html += '<span class="pstat hp">HP ' + (savedChar.hp || '?') + '</span>';
-            html += '<span class="pstat san">SAN ' + (savedChar.san || '?') + '</span>';
-            html += '<span class="pstat mythos">神话 ' + (savedChar.mythosKnowledge || 0) + '</span>';
-            html += '</div>';
-            if (savedProgress) {
-                html += '<div class="progress-location">章节 ' + (savedProgress.chapter || '未知') + '</div>';
-            }
-            html += '</div></div></div>';
+        var continueMeta = '暂无存档';
+        if (hasSave) {
+            var bits = [];
+            if (savedProgress && savedProgress.chapter) bits.push('第' + savedProgress.chapter + '章');
+            if (savedProgress && savedProgress.modName) bits.push(savedProgress.modName);
+            if (savedChar && savedChar.name) bits.push(savedChar.name);
+            continueMeta = bits.length ? bits.join(' · ') : '回到上次进度';
         }
 
-        html += '<div class="main-menu-secondary">';
-        html += '<button class="secondary-action" id="btn-character-archive"><span class="sec-icon">ID</span><span class="sec-text">角色档案</span></button>';
-        html += '<button class="secondary-action" id="btn-settings-menu"><span class="sec-icon">CFG</span><span class="sec-text">设置</span></button>';
-        html += '<button class="secondary-action" id="btn-about"><span class="sec-icon">?</span><span class="sec-text">关于</span></button>';
+        return [
+            { id: 'btn-tutorial-demo',      num: 'I',   name: '15分钟试玩', en: 'Demo Case',  meta: '独立试玩档 · 检定 · 线索 · 结局抉择' },
+            { id: 'btn-new-game',           num: 'II',  name: '新的调查',   en: 'New Case',   meta: '拈起一桩崭新的卷宗', primary: true },
+            { id: 'btn-continue',           num: 'III', name: '继续调查',   en: 'Continue',   meta: continueMeta, disabled: !hasSave },
+            { id: 'btn-character-archive',  num: 'IV',  name: '角色档案',   en: 'Archives',   meta: '已封存的调查员与故事' },
+            { id: 'btn-settings-menu',      num: 'V',   name: '设置',       en: 'Settings',   meta: '守秘人 · 外观 · 存档' }
+        ];
+    },
+
+    renderMainScreen() {
+        var currentTheme = document.documentElement.getAttribute('data-theme') || 'detective';
+        var themes = [
+            { key: 'detective', dot: '#8c2f28', title: '侦探事务所' },
+            { key: 'deco',      dot: '#d8b65a', title: '装饰艺术' },
+            { key: 'cthulhu',   dot: '#46c9a8', title: '深海' },
+            { key: 'abyss',     dot: '#8f5cc4', title: '深渊' }
+        ];
+
+        // 氛围层：底色 / 晕影 / 主题纹理 + 胶片颗粒，位于 .menu 之下
+        var html = '<div class="bgfx" aria-hidden="true"></div>';
+        html += '<div class="grain" aria-hidden="true"></div>';
+        html += '<div class="menu-screen menu">';
+
+        // 主题切换（右上角三/四色点）
+        html += '<div class="m-top"><div class="tsw" id="tsw">';
+        themes.forEach(function(t) {
+            html += '<button type="button" data-set="' + t.key + '" title="' + t.title + '"'
+                 +  ' aria-pressed="' + (currentTheme === t.key ? 'true' : 'false') + '">'
+                 +  '<i style="background:' + t.dot + '"></i></button>';
+        });
+        html += '</div></div>';
+
+        // 每套主题的氛围母题
+        html += '<div class="m-motif">' + MENU_CTHULHU_SCRAWL + '</div>';
+
+        // 角标：cthulhu / abyss 走 CSS 角，deco 走鎏金角饰，detective 的边框已烤进背景板
+        html += '<span class="m-corner tl"></span><span class="m-corner tr"></span>'
+             +  '<span class="m-corner bl"></span><span class="m-corner br"></span>';
+        html += '<span class="m-orn-corner tl" aria-hidden="true"></span><span class="m-orn-corner tr" aria-hidden="true"></span>'
+             +  '<span class="m-orn-corner bl" aria-hidden="true"></span><span class="m-orn-corner br" aria-hidden="true"></span>';
+
+        // 主题道具：detective 提灯 · cthulhu 湿痕 · deco 鎏金几何
+        html += '<div class="m-lantern" aria-hidden="true"></div>';
+        html += '<div class="m-stain s1" aria-hidden="true"></div><div class="m-stain s2" aria-hidden="true"></div>'
+             +  '<div class="m-stain s3" aria-hidden="true"></div><div class="m-stain s4" aria-hidden="true"></div>';
+        html += '<div class="m-geo left" aria-hidden="true"></div><div class="m-geo right" aria-hidden="true"></div>';
+
+        html += '<div class="m-core">';
+        html += '<div class="m-kicker">'
+             +  '<span class="dd">\u25c6</span>'
+             +  '<span class="t-det">阿卡姆 · 守秘人事务所 · 卷宗待启</span>'
+             +  '<span class="t-deco">Le Bureau du Gardien · MCMXXI</span>'
+             +  '<span class="t-cth">深 渊 来 信 · 不 可 名 状</span>'
+             +  '<span class="t-abyss">凝 视 深 渊 · 深 渊 回 望</span>'
+             +  '<span class="dd">\u25c7</span>'
+             +  '</div>';
+        html += MENU_CREST_SVG;
+        html += '<div class="m-crest-img" aria-hidden="true"></div>';
+        html += '<h1 class="m-title">夜谭</h1>';
+        html += '<div class="m-div"><i></i><span>\u25c8</span><i></i></div>';
+        html += '<div class="m-sub">Night Tales</div>';
+        html += '<div class="m-tag">单人克苏鲁文字跑团 · 守秘人为你执笔</div>';
+
+        html += '<div class="m-plate">';
+        html += '<div class="m-plate-tab">'
+             +  '<span class="t-det">案 卷 目 录 · CASE INDEX</span>'
+             +  '<span class="t-deco">Sommaire</span>'
+             +  '<span class="t-cth">残 卷 索 引</span>'
+             +  '<span class="t-abyss">深 渊 名 录</span>'
+             +  '</div>';
+        html += '<nav class="m-entries">';
+        this.getMenuEntries().forEach(function(e) {
+            html += '<button type="button" class="m-entry' + (e.primary ? ' primary' : '') + '" id="' + e.id + '"'
+                 +  (e.disabled ? ' disabled' : '') + '>'
+                 +  '<span class="m-num"><i>' + e.num + '</i></span>'
+                 +  '<span class="body"><span class="nm">' + e.name + '</span>'
+                 +  '<span class="meta">' + e.en + ' · ' + e.meta + '</span></span>'
+                 +  '<span class="go">\u2192</span>'
+                 +  '</button>';
+        });
+        html += '</nav>';
+        html += '</div>';   // .m-plate
+        html += '</div>';   // .m-core
+
+        html += '<div class="m-foot">';
+        html += '<div class="m-ver"><span>夜谭 ' + MENU_APP_VERSION + '</span>'
+             +  '<button type="button" class="m-about" id="btn-about">关于</button></div>';
+        html += '<div class="keeper"><i></i>守秘人已就位</div>';
         html += '</div>';
 
-        html += '<div class="theme-switcher-inline">';
-        html += '<span class="theme-label">主题</span>';
-        html += '<button class="theme-chip ' + (currentTheme === 'detective' ? 'active' : '') + '" data-theme="detective">事务所</button>';
-        html += '<button class="theme-chip ' + (currentTheme === 'deco' ? 'active' : '') + '" data-theme="deco">✦ Deco</button>';
-        html += '<button class="theme-chip ' + (currentTheme === 'cthulhu' ? 'active' : '') + '" data-theme="cthulhu">密教</button>';
-        html += '<button class="theme-chip ' + (currentTheme === 'abyss' ? 'active' : '') + '" data-theme="abyss">◈ 深渊</button>';
-        html += '</div>';
-
-        html += '</div>';
-        html += '</div>';
-
+        html += '</div>';   // .menu
         return html;
     },
 
@@ -1033,13 +1072,14 @@ const MenuSystem = {
             }
         });
 
-        document.querySelectorAll('.theme-chip').forEach(function(chip) {
-            chip.addEventListener('click', function() {
-                var theme = chip.dataset.theme;
+        document.querySelectorAll('#tsw button').forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                var theme = dot.dataset.set;
                 document.documentElement.setAttribute('data-theme', theme);
                 localStorage.setItem('coc-theme', theme);
-                document.querySelectorAll('.theme-chip').forEach(function(c) { c.classList.remove('active'); });
-                chip.classList.add('active');
+                document.querySelectorAll('#tsw button').forEach(function(d) {
+                    d.setAttribute('aria-pressed', d === dot ? 'true' : 'false');
+                });
             });
         });
 
