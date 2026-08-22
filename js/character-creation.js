@@ -1,3 +1,5 @@
+const CC_APP_VERSION = 'v2.0';
+
 const CharacterCreation = {
     currentStep: 0,
     totalSteps: 6,
@@ -138,37 +140,74 @@ const CharacterCreation = {
         document.getElementById('character-creation-overlay').classList.remove('active');
     },
 
+    // 车卡外壳：设计稿的 .page / .topbar / .canvas / .footline。
+    // 六步进度用 .tb-dots 的菱形序列表示（实心=已完成，描边=未到）。
     renderStep() {
         const container = document.getElementById('creation-container');
+        const step = this.currentStep;
 
-        // 步骤进度条
-        const stepIndicator = this.stepNames.map((name, i) => {
-            const stepClass = i < this.currentStep ? 'done' : i === this.currentStep ? 'active' : '';
-            const dotContent = i < this.currentStep ? '✓' : (i + 1);
-            let html = `<div class="cc-step ${stepClass}"><div class="cc-step-dot">${dotContent}</div><span>${name}</span></div>`;
-            if (i < this.stepNames.length - 1) {
-                html += `<div class="cc-step-line ${i < this.currentStep ? 'done' : ''}"></div>`;
-            }
-            return html;
+        const dots = this.stepNames.map((name, i) => {
+            const cls = i < step ? 'done' : i === step ? 'now' : 'hollow';
+            return `<i class="${cls}" title="${name}"></i>`;
         }).join('');
 
-        let html = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-            <h2 class="cc-title">调查员档案</h2>
-            <button class="nav-btn" id="btn-close-creation" style="font-size:12px;padding:4px 12px;">✕ 关闭</button>
-        </div>
-        <div class="cc-stepper">${stepIndicator}</div>`;
+        let html = `<div class="bgfx" aria-hidden="true"></div>
+            <div class="paperfx" aria-hidden="true"></div>
+            <div class="grain" aria-hidden="true"></div>
+            <div class="page">
+            <header class="topbar">
+                <button type="button" class="tb-back" id="btn-close-creation">‹ 退出车卡</button>
+                <div class="tb-mid">
+                    <div class="tb-dots">${dots}</div>
+                    <div class="tb-app">Investigator Record</div>
+                </div>
+                <div class="tb-right"><span class="tb-step">Step ${String(step + 1).padStart(2, '0')} / ${String(this.totalSteps).padStart(2, '0')}</span></div>
+            </header>
+            <div class="canvas">`;
 
-        switch (this.currentStep) {
-            case 0: html += this.renderAttrStep(); break;
-            case 1: html += this.renderOccupationStep(); break;
-            case 2: html += this.renderSkillStep(); break;
-            case 3: html += this.renderDerivedStep(); break;
-            case 4: html += this.renderBackgroundStep(); break;
-            case 5: html += this.renderCompleteStep(); break;
+        if (step === this.totalSteps - 1) {
+            // 第六步是三栏档案，自带版心，不套 .sheet
+            html += this.renderCompleteStep();
+        } else {
+            html += `<section class="sheet ornframe">
+                <span class="oc tl"></span><span class="oc tr"></span>
+                <span class="oc bl"></span><span class="oc br"></span>
+                <div class="sh-head">
+                    <div class="sh-kicker">${this.stepNames[step]}</div>
+                </div>
+                <div class="sh-crest" aria-hidden="true"></div>`;
+            switch (step) {
+                case 0: html += this.renderAttrStep(); break;
+                case 1: html += this.renderOccupationStep(); break;
+                case 2: html += this.renderSkillStep(); break;
+                case 3: html += this.renderDerivedStep(); break;
+                case 4: html += this.renderBackgroundStep(); break;
+            }
+            html += this.renderNavigation();
+            html += `</section>`;
         }
 
-        html += this.renderNavigation();
+        html += `</div>
+            <div class="footline">
+                <span class="v">夜谭 ${CC_APP_VERSION}</span>
+                <span class="wave" aria-hidden="true"></span>
+                <span class="v">Case File · New</span>
+            </div>
+        </div>`;
+
         container.innerHTML = html;
+
+        // 每步的标题/副标题由各自的 render 方法产出（含动态文案），
+        // 这里统一提到 .sh-head，避免和外壳的标题重复。
+        const head = container.querySelector('.sh-head');
+        const stepEl = container.querySelector('.creation-step');
+        if (head && stepEl) {
+            const title = stepEl.querySelector(':scope > .cc-title');
+            const sub = stepEl.querySelector(':scope > .cc-subtitle');
+            if (title) { title.classList.add('sh-title'); head.appendChild(title); }
+            if (sub) { sub.classList.add('sh-sub'); head.appendChild(sub); }
+        }
+
         this.bindStepEvents();
     },
 
@@ -936,80 +975,125 @@ const CharacterCreation = {
 
     renderCompleteStep() {
         const attrs = this.getCurrentAttrs();
-        if (!attrs) return `<div class="creation-step active"><div class="cc-title">数据不完整</div></div>`;
+        if (!attrs) {
+            return `<section class="sheet"><div class="sh-head"><h2 class="sh-title">数据不完整</h2>
+                <div class="sh-sub">请返回前面的步骤补齐属性</div></div>
+                ${this.renderNavigation()}</section>`;
+        }
+
+        const esc = (v) => String(v == null ? '' : v)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
         const derived = COCRules.calculateDerivedValues(attrs);
-        const name = this.characterData.name || this.selectedOccupation || '调查员';
-        const gender = this.characterData.gender || '未知';
-        const appearance = this.characterData.appearance || '';
-        const personality = this.characterData.personality || '';
-        const age = this.characterData.age || 25;
-        const ageSummary = this.getAgeModifierSummary(attrs, age);
+        const d = this.characterData;
+        const name = d.name || this.selectedOccupation || '调查员';
+        const occ = this.selectedOccupation || '未定';
+        const ageSummary = this.getAgeModifierSummary(attrs, d.age || 25);
 
-        let html = `<div class="creation-step active">`;
-        html += `<div class="cc-title">调查员档案完成</div>`;
-        html += `<div class="cc-subtitle">确认信息，准备踏入未知</div>`;
+        let html = `<div class="dband">
+            <div class="sh-kicker">档案建立完成</div>
+            <h2 class="sh-title">调查员 · ${esc(name)}</h2>
+        </div>
+        <div class="dossier">`;
 
-        html += `<div class="cc-final-card">`;
-        html += `<div class="cc-final-header">`;
-        html += `<div class="cc-final-portrait">`;
-        html += `<div id="char-portrait-area" class="cc-final-portrait-box">`;
-        html += `<span style="font-size:11px;color:var(--text-secondary);text-align:center;padding:8px;">点击下方生成立绘</span>`;
-        html += `</div>`;
-        html += `<button class="nav-btn" id="btn-gen-portrait" style="font-size:11px;padding:4px 10px;margin-top:6px;width:100%;">🎨 生成立绘</button>`;
-        html += `</div>`;
-        html += `<div class="cc-final-info">`;
-        html += `<div class="cc-final-name">${name}</div>`;
-        html += `<div class="cc-final-occ">${this.selectedOccupation}</div>`;
-        if (appearance) {
-            html += `<div class="cc-final-desc">${appearance}</div>`;
-        }
-        if (personality) {
-            html += `<div class="cc-final-desc" style="margin-top:4px;">${personality}</div>`;
-        }
-        html += `</div></div>`;
+        // —— 第一栏：立绘 ——
+        html += `<div class="photo-col">
+            <div class="photo-card">
+                <div class="photo-slot" id="char-portrait-area">拖入 / 生成调查员立绘</div>
+                <div class="photo-name">${esc(name)}</div>
+            </div>
+            <div class="photo-tags">
+                <span class="ptag">${esc(occ)}</span>
+                <span class="ptag">1920s${d.residence ? ' · ' + esc(d.residence) : ''}</span>
+            </div>
+            <button type="button" class="nav-btn" id="btn-gen-portrait" style="margin-top:14px;width:100%;">生成立绘</button>
+        </div>`;
 
-        html += `<div class="cc-attr-grid">`;
-        for (const key of Object.keys(COCRules.ATTRIBUTES)) {
-            const attr = COCRules.ATTRIBUTES[key];
-            html += `<div class="cc-attr-card"><div class="cc-attr-abbr">${attr.abbr}</div><div class="cc-attr-val">${attrs[key]}</div></div>`;
-        }
-        html += `</div>`;
-
-        html += `<div class="cc-derived-grid">`;
-        [
-            { label: 'HP', value: derived.hp },
-            { label: 'MP', value: derived.mp },
-            { label: 'SAN', value: derived.san },
-            { label: 'DB', value: derived.db },
-            { label: 'MOV', value: derived.mov },
-            { label: '幸运', value: attrs.luck }
-        ].forEach(item => {
-            html += `<div class="cc-derived-card"><div class="cc-derived-label">${item.label}</div><div class="cc-derived-val">${item.value}</div></div>`;
+        // —— 第二栏：个人档案 + 背景速写 + 状态 ——
+        const fields = [
+            ['姓名', 'Name', name],
+            ['性别', 'Gender', d.gender || '未知'],
+            ['年龄', 'Age', d.age || 25],
+            ['职业', 'Occupation', occ],
+            ['国籍', 'Nationality', d.nationality || '未填'],
+            ['居住地', 'Residence', d.residence || '未填']
+        ];
+        html += `<section class="panel ornframe">
+            <span class="oc tl"></span><span class="oc tr"></span>
+            <span class="oc bl"></span><span class="oc br"></span>
+            <h3 class="panel-h"><b>个人档案</b>Profile</h3>
+            <div class="flist">`;
+        fields.forEach(([k, en, v]) => {
+            html += `<div class="frow"><span class="fk">${k} · ${en}</span><span class="fv">${esc(v)}</span></div>`;
         });
         html += `</div>`;
 
-        if (ageSummary.length > 0) {
-            html += `<div style="margin-top:12px;padding:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.03);font-size:12px;color:var(--text-secondary);line-height:1.6;">`;
-            html += `<div style="color:var(--accent-cyan);font-weight:700;margin-bottom:4px;">年龄修正预告</div>`;
-            ageSummary.forEach(line => { html += `<div>${line}</div>`; });
+        const sketch = [d.appearance, d.personality, d.background].filter(Boolean);
+        if (sketch.length) {
+            html += `<div class="bgsketch"><h3 class="panel-h"><b>背景速写</b>Backstory</h3>`;
+            sketch.forEach(t => { html += `<p>${esc(t)}</p>`; });
             html += `</div>`;
         }
 
-        const topSkills = Object.entries(this.skillAllocations || {})
-            .filter(([_, a]) => a.added > 0)
-            .sort((a, b) => (b[1].base + b[1].added) - (a[1].base + a[1].added))
-            .slice(0, 10);
+        html += `<div class="sec"><h3 class="panel-h"><b>状态</b>Vitals</h3><div class="vmini">`;
+        [['hp', '生命', 'HP', derived.hp], ['san', '理智', 'SAN', derived.san], ['mp', '魔法', 'MP', derived.mp]]
+            .forEach(([cls, zh, en, v]) => {
+                html += `<div class="vrow ${cls}">
+                    <div class="vh"><b>${zh} ${en}</b><span class="vv">${v} / ${v}</span></div>
+                    <div class="vbar"><i style="width:100%"></i></div>
+                </div>`;
+            });
+        html += `</div><div class="photo-tags" style="justify-content:flex-start;margin-top:14px;">
+            <span class="ptag">幸运 ${attrs.luck}</span>
+            <span class="ptag">移动 ${derived.mov}</span>
+            <span class="ptag">体格 ${derived.db}</span>
+        </div></div>`;
 
-        if (topSkills.length > 0) {
-            html += `<div class="cc-final-skills">`;
-            topSkills.forEach(([name, alloc]) => {
-                html += `<span class="cc-final-skill-tag">${name} ${alloc.base + alloc.added}%</span>`;
+        if (ageSummary.length) {
+            html += `<div class="agebox"><div class="agebox-h">年龄修正预告</div>`;
+            ageSummary.forEach(line => { html += `<div>${esc(line)}</div>`; });
+            html += `</div>`;
+        }
+        html += `</section>`;
+
+        // —— 第三栏：八大属性 + 技能加点 ——
+        html += `<section class="panel ornframe">
+            <span class="oc tl"></span><span class="oc tr"></span>
+            <span class="oc bl"></span><span class="oc br"></span>
+            <h3 class="panel-h"><b>八大属性</b>Characteristics</h3>
+            <div class="attrs">`;
+        Object.keys(COCRules.ATTRIBUTES).forEach(key => {
+            const a = COCRules.ATTRIBUTES[key];
+            html += `<div class="ac"><div class="ak">${a.abbr}</div><div class="av">${attrs[key]}</div><div class="an">${a.name || ''}</div></div>`;
+        });
+        html += `</div>`;
+
+        const skills = Object.entries(this.skillAllocations || {})
+            .filter(([, a]) => a.added > 0)
+            .map(([n, a]) => [n, a.base + a.added])
+            .sort((x, y) => y[1] - x[1]);
+        if (skills.length) {
+            html += `<div class="sec"><h3 class="panel-h"><b>技能加点</b>Skills</h3><div class="skills">`;
+            skills.slice(0, 12).forEach(([n, v]) => {
+                html += `<div class="skrow"><span class="sn">${esc(n)}</span>
+                    <span class="sval"><span class="smini"><i style="width:${Math.min(100, v)}%"></i></span>
+                    <span class="snum">${v}</span></span></div>`;
             });
             html += `</div>`;
+            const left = this.getRemainingSkillPoints ? this.getRemainingSkillPoints() : null;
+            if (left != null) {
+                html += `<div class="ptbar"><span class="pl">剩余技能点 · Points Left</span><span class="pv">${left}</span></div>`;
+            }
+            html += `</div>`;
         }
+        html += `</section>`;
+        html += `</div>`;   // .dossier
 
-        html += `</div></div>`;
+        // —— 页脚：封缄印 + 操作 ——
+        html += `<div class="dfoot">
+            <div class="seal"><div class="st">已就绪</div><div class="ss">Ready</div></div>
+            ${this.renderNavigation()}
+        </div>`;
         return html;
     },
 
@@ -1044,14 +1128,14 @@ const CharacterCreation = {
     },
 
     renderNavigation() {
+        const last = this.currentStep === this.totalSteps - 1;
         let html = `<div class="cc-nav">`;
-        html += `<button class="nav-btn" id="btn-prev" ${this.currentStep === 0 ? 'disabled' : ''}>← 上一步</button>`;
-        html += `<div style="display:flex;gap:8px;">`;
-        if (this.currentStep < this.totalSteps - 1) {
-            html += `<button class="nav-btn primary" id="btn-next">下一步 →</button>`;
-        } else {
-            html += `<button class="nav-btn primary" id="btn-finish">✓ 完成创建</button>`;
-        }
+        html += `<button type="button" class="nav-btn" id="btn-prev" ${this.currentStep === 0 ? 'disabled' : ''}>← 上一步</button>`;
+        html += `<span class="grow"></span>`;
+        html += `<div class="cc-nav-actions">`;
+        html += last
+            ? `<button type="button" class="nav-btn primary" id="btn-finish">开始冒险 ›</button>`
+            : `<button type="button" class="nav-btn primary" id="btn-next">下一步 →</button>`;
         html += `</div></div>`;
         return html;
     },
