@@ -1,4 +1,4 @@
-// 主菜单素材：几何徽记（abyss 降级用）与 cthulhu 蜡笔涂鸦母题，取自设计稿。
+// 主菜单素材：几何徽记与 cthulhu 蜡笔涂鸦母题，取自设计稿。
 const MENU_APP_VERSION = 'v2.0';
 
 const MENU_CREST_SVG = '<svg class="m-crest" viewBox="0 0 64 64" fill="none" stroke-width="1.4" aria-hidden="true">'
@@ -132,8 +132,7 @@ const MenuSystem = {
         var themes = [
             { key: 'detective', dot: '#8c2f28', title: '侦探事务所' },
             { key: 'deco',      dot: '#d8b65a', title: '装饰艺术' },
-            { key: 'cthulhu',   dot: '#46c9a8', title: '深海' },
-            { key: 'abyss',     dot: '#8f5cc4', title: '深渊' }
+            { key: 'cthulhu',   dot: '#46c9a8', title: '深海' }
         ];
 
         // 氛围层：底色 / 晕影 / 主题纹理 + 胶片颗粒，位于 .menu 之下
@@ -153,7 +152,7 @@ const MenuSystem = {
         // 每套主题的氛围母题
         html += '<div class="m-motif">' + MENU_CTHULHU_SCRAWL + '</div>';
 
-        // 角标：cthulhu / abyss 走 CSS 角，deco 走鎏金角饰，detective 的边框已烤进背景板
+        // 角标：cthulhu 走 CSS 角，deco 走鎏金角饰，detective 的边框已烤进背景板
         html += '<span class="m-corner tl"></span><span class="m-corner tr"></span>'
              +  '<span class="m-corner bl"></span><span class="m-corner br"></span>';
         html += '<span class="m-orn-corner tl" aria-hidden="true"></span><span class="m-orn-corner tr" aria-hidden="true"></span>'
@@ -171,7 +170,6 @@ const MenuSystem = {
              +  '<span class="t-det">阿卡姆 · 守秘人事务所 · 卷宗待启</span>'
              +  '<span class="t-deco">Le Bureau du Gardien · MCMXXI</span>'
              +  '<span class="t-cth">深 渊 来 信 · 不 可 名 状</span>'
-             +  '<span class="t-abyss">凝 视 深 渊 · 深 渊 回 望</span>'
              +  '<span class="dd">\u25c7</span>'
              +  '</div>';
         html += MENU_CREST_SVG;
@@ -186,7 +184,6 @@ const MenuSystem = {
              +  '<span class="t-det">案 卷 目 录 · CASE INDEX</span>'
              +  '<span class="t-deco">Sommaire</span>'
              +  '<span class="t-cth">残 卷 索 引</span>'
-             +  '<span class="t-abyss">深 渊 名 录</span>'
              +  '</div>';
         html += '<nav class="m-entries">';
         this.getMenuEntries().forEach(function(e) {

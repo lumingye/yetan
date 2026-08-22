@@ -1,7 +1,7 @@
 /* ============================================================
    夜谭 UI v2 · 按设计稿移植
    token / 氛围层 / 主菜单。只负责外观，不改 CoC 规则与存档数据流。
-   四主题：detective · deco · cthulhu · abyss
+   三主题：detective · deco · cthulhu
    ============================================================ */
 
 /* ============================================================
@@ -106,40 +106,6 @@
 }
 
 * { box-sizing: border-box; }
-/* ---------- ABYSS：设计稿未覆盖，按项目既有 theme-abyss 配色补齐 ---------- */
-[data-theme="abyss"] #menu-container[data-screen="main"],
-[data-theme="abyss"] #character-creation-overlay {
-  --bg:        #08080e;
-  --bg-2:      #05050a;
-  --surface:   #0e0e18;
-  --surface-2: #141422;
-  --panel:     #10101c;
-  --ink:       #cfcfe4;
-  --ink-soft:  #8a8aaa;
-  --ink-faint: #6a6a8a;
-  --accent:    #8f5cc4;
-  --accent-2:  #6f6fb8;
-  --good:      #5f8f7a;
-  --crit:      #b08ad0;
-  --bad:       #8a3a6a;
-  --line:      #3a3a56;
-  --line-soft: #23233a;
-  --glow:      rgba(143,92,196,.24);
-  --san:       #6f6fb8;
-  --hp:        #8a3a6a;
-  --mp:        #4f7f74;
-  --vignette:  rgba(0,0,0,.5);
-  --shadow:    0 22px 56px -26px rgba(0,0,0,.9);
-  --grain-op:  .07;
-  --grain-blend: screen;
-}
-/* abyss 没有专属素材，走 CSS 角标 + 几何徽记的降级路径 */
-[data-theme="abyss"] .bgfx::after {
-  content: ""; position: absolute; inset: 0; opacity: .5;
-  background:
-    radial-gradient(44% 52% at 26% 16%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 66%),
-    radial-gradient(48% 56% at 78% 86%, color-mix(in srgb, var(--accent-2) 11%, transparent), transparent 68%);
-}
 
 /* ===================== ATMOSPHERE LAYERS ===================== */
 .bgfx { position: fixed; inset: 0; z-index: 0; pointer-events: none; transition: opacity .6s ease; }
@@ -207,11 +173,10 @@
 .m-top { position: absolute; top: 22px; right: 26px; z-index: 8; }
 
 /* theme-variant text helper */
-.t-det, .t-deco, .t-cth, .t-abyss { display: none; }
+.t-det, .t-deco, .t-cth { display: none; }
 [data-theme="detective"] .t-det { display: inline; }
 [data-theme="deco"] .t-deco { display: inline; }
 [data-theme="cthulhu"] .t-cth { display: inline; }
-[data-theme="abyss"] .t-abyss { display: inline; }
 
 /* ===================== DECORATIVE MOTIF LAYER ===================== */
 .m-motif { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
@@ -1091,28 +1056,3 @@ select.tin { cursor: pointer; min-width: 150px; }
 /* 角饰是装饰，不该压在栏目标题上 —— 放到内容层之下 */
 .ornframe > .oc { z-index: 0; }
 
-/* ---------- ABYSS：设计稿未覆盖，走无素材的 CSS 降级 ---------- */
-/* 立绘卡：沿用 deco/cthulhu 的描边版式（detective 才用夹子实拍图） */
-[data-theme="abyss"] .photo-card {
-  background: color-mix(in srgb, var(--surface) 80%, transparent);
-  border: 1px solid var(--accent); padding: 14px 14px 0;
-  flex-direction: column; gap: 12px;
-}
-[data-theme="abyss"] .photo-card .photo-slot { width: 100%; flex: 1; min-height: 0; }
-[data-theme="abyss"] .photo-card .photo-name {
-  flex-shrink: 0; height: 16%; display: flex; align-items: center; justify-content: center; gap: 8px;
-  font-family: var(--font-display); font-size: clamp(13px, 1.1vw, 16px); letter-spacing: .05em; color: var(--ink);
-  border-top: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  margin: 0 -14px; padding: 0 10px;
-}
-/* 封缄印：沿用 deco 的描边圆章 */
-[data-theme="abyss"] .seal {
-  color: var(--accent); border: 2px solid var(--accent); border-radius: 50%;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
-}
-[data-theme="abyss"] .seal .ss { color: var(--accent-2); }
-/* 页脚波纹：换成与 deco 一致的渐变细线 */
-[data-theme="abyss"] .footline .wave {
-  background: linear-gradient(90deg, transparent, var(--line), transparent);
-  height: 1px; opacity: .6;
-}

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/theme-detective.css?v=2">
     <link rel="stylesheet" href="css/theme-deco.css?v=2">
     <link rel="stylesheet" href="css/theme-cthulhu.css?v=2">
-    <link rel="stylesheet" href="css/theme-abyss.css?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
@@ -486,13 +485,6 @@
                                 <span class="theme-option-name">克苏鲁秘教</span>
                                 <span class="theme-option-desc">暗夜血腥风格</span>
                             </div>
-                            <div class="theme-option" data-theme="abyss">
-                                <div class="theme-preview theme-preview-abyss">
-                                    <span class="theme-preview-icon">◈</span>
-                                </div>
-                                <span class="theme-option-name">深渊低语</span>
-                                <span class="theme-option-desc">虚空回响风格</span>
-                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -689,7 +681,13 @@
     <script src="js/random-events.js?v=1"></script>
     <script>
     (function() {
+        var THEMES = ['detective', 'deco', 'cthulhu'];
         var saved = localStorage.getItem('coc-theme') || 'detective';
+        // 旧版本存过已废弃的 abyss，回落到默认主题，否则会落到没有 token 的空主题上
+        if (THEMES.indexOf(saved) < 0) {
+            saved = 'detective';
+            try { localStorage.setItem('coc-theme', saved); } catch (e) {}
+        }
         document.documentElement.setAttribute('data-theme', saved);
 
         function updateThemeUI(theme) {
