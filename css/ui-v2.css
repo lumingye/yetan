@@ -1568,7 +1568,15 @@ select.tin { cursor: pointer; min-width: 150px; }
 }
 [data-theme="deco"] #app .sidebar-portrait { border-radius: 0; }
 #app .sidebar-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
-#app #sidebar-char-header { font-family: var(--font-display); font-size: 15px; color: var(--ink); }
+/* 这个元素挂着 class="section-title"，但它是角色名标题不是小节标签，
+   要把小节标签那套大写化 / 宽字距 / 尾部横线撤掉 */
+#app #sidebar-char-header {
+  font-family: var(--font-display); font-size: 17px; font-weight: 600;
+  letter-spacing: .03em; text-transform: none; color: var(--ink);
+  display: block; margin: 0 0 4px;
+}
+#app #sidebar-char-header::after { content: none; display: none; }
+#app .sidebar-identity { margin-bottom: 20px; }
 
 /* 生命状态条 → 设计稿 .vital / .bar */
 #app .vital-bar { margin-bottom: 13px; }
