@@ -9,7 +9,11 @@
    三主题 token：detective / deco / cthulhu  ·  默认 detective
    ============================================================ */
 
-:root {
+/* v2 token 只在接入新设计的界面上生效。
+   --font-sans / --font-mono / --accent 与 terminal.css 及各 theme-*.css 同名，
+   放在 :root 会因为特异性相同、加载在后而赢下全局，把 Josefin Sans 和
+   黄铜 --accent 顶掉。每接入一屏，就把那一屏的根选择器加进下面的列表。 */
+#menu-container[data-screen="main"] {
   --font-display: 'Cinzel', 'Noto Serif SC', serif;
   --font-serif: 'Spectral', 'Noto Serif SC', Georgia, serif;
   --font-sans: 'Noto Sans SC', system-ui, sans-serif;
@@ -17,7 +21,7 @@
 }
 
 /* ---------- DETECTIVE：暖调旧纸 · 墨水/牛血红/黄铜 ---------- */
-[data-theme="detective"] {
+[data-theme="detective"] #menu-container[data-screen="main"] {
   --bg:        #ddd0b4;
   --bg-2:      #cdbd99;
   --surface:   #efe7d4;
@@ -44,7 +48,7 @@
 }
 
 /* ---------- DECO：蓝金 · 午夜蓝 / 镀金 / 钢蓝 ---------- */
-[data-theme="deco"] {
+[data-theme="deco"] #menu-container[data-screen="main"] {
   --bg:        #0c1a2e;
   --bg-2:      #0a1526;
   --surface:   #122339;
@@ -71,7 +75,7 @@
 }
 
 /* ---------- CTHULHU：深海冷青 · 深渊 / 生物荧光 ---------- */
-[data-theme="cthulhu"] {
+[data-theme="cthulhu"] #menu-container[data-screen="main"] {
   --bg:        #07140f;
   --bg-2:      #04100c;
   --surface:   #0d1f1b;
@@ -99,7 +103,7 @@
 
 * { box-sizing: border-box; }
 /* ---------- ABYSS：设计稿未覆盖，按项目既有 theme-abyss 配色补齐 ---------- */
-[data-theme="abyss"] {
+[data-theme="abyss"] #menu-container[data-screen="main"] {
   --bg:        #08080e;
   --bg-2:      #05050a;
   --surface:   #0e0e18;
