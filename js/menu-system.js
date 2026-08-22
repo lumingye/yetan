@@ -224,7 +224,10 @@ const MenuSystem = {
             dots += '<span class="carousel-dot ' + (d === 0 ? 'active' : '') + '" data-index="' + d + '"></span>';
         }
 
-        var html = '<div class="menu-screen case-select-screen">';
+        var html = '<div class="bgfx" aria-hidden="true"></div>'
+            + '<div class="paperfx" aria-hidden="true"></div>'
+            + '<div class="grain" aria-hidden="true"></div>';
+        html += '<div class="menu-screen case-select-screen">';
 
         html += '<div class="screen-header">';
         html += '<button class="back-btn" id="btn-back-main">← 返回</button>';
@@ -306,6 +309,9 @@ const MenuSystem = {
         html += '</div>';
 
         html += '</div>';
+        html += '<div class="footline"><span class="v">夜谭 ' + MENU_APP_VERSION + '</span>'
+             +  '<span class="wave" aria-hidden="true"></span>'
+             +  '<span class="v">Case Index</span></div>';
         html += '</div>';
 
         return html;
@@ -361,7 +367,10 @@ const MenuSystem = {
             occHtml += '</div>';
         }
 
-        var html = '<div class="menu-screen case-preview">';
+        var html = '<div class="bgfx" aria-hidden="true"></div>'
+            + '<div class="paperfx" aria-hidden="true"></div>'
+            + '<div class="grain" aria-hidden="true"></div>';
+        html += '<div class="menu-screen case-preview">';
         html += '<div class="screen-header">';
         html += '<button class="back-btn" id="btn-back-cases">← 返回</button>';
         html += '<h2>' + caseData.title + '</h2>';
@@ -411,6 +420,9 @@ const MenuSystem = {
         html += '</div>';
 
         html += '</div>';
+        html += '<div class="footline"><span class="v">夜谭 ' + MENU_APP_VERSION + '</span>'
+             +  '<span class="wave" aria-hidden="true"></span>'
+             +  '<span class="v">Case File</span></div>';
         html += '</div>';
 
         return html;
