@@ -1062,7 +1062,9 @@ const Terminal = {
     async printKP(text, skipTypewriter = false) {
         if (!this.outputEl) return;
         const div = document.createElement('div');
-        div.className = 'message kp fade-in';
+        const isLead = this._leadNext || !this.outputEl.querySelector('.message.kp');
+        this._leadNext = false;
+        div.className = 'message kp fade-in' + (isLead ? ' lead' : '');
         this.outputEl.appendChild(div);
 
         if (skipTypewriter) {
@@ -1351,6 +1353,7 @@ const Terminal = {
     },
 
     printChapterTitle(title) {
+        this._leadNext = true;   // 下一段叙事作为开场段，首字下沉
         const div = document.createElement('div');
         div.className = 'chapter-title fade-in';
         div.textContent = `〔 ${title} 〕`;
@@ -1396,8 +1399,7 @@ const Terminal = {
                         b.style.pointerEvents = 'none';
                     });
                     btn.style.opacity = '1';
-                    btn.style.borderColor = 'var(--accent-green)';
-                    btn.style.background = 'rgba(0, 255, 136, 0.1)';
+                    btn.classList.add('picked');
 
                     this.inputEl.value = text;
                     this.submitInput({ isQuickOption: true });

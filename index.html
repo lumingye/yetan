@@ -17,36 +17,54 @@
     <div class="particles-container" id="particlesContainer"></div>
     <div id="menu-container"></div>
     <div id="app">
-        <div id="status-bar">
-            <div class="status-left">
-                <span class="game-title">夜谭</span>
-                <span class="status-item" id="status-char-name">无名调查员</span>
-                <span class="status-item" id="status-scenario" style="display:none;"></span>
-                <span class="status-item" id="status-time">--:--</span>
-                <span class="status-item" id="status-chapter">未开始</span>
-                <span class="status-item" id="status-token-usage" style="display:none;">API 0 · Tok 0</span>
-            </div>
-            <div class="status-right">
-                <button class="status-item mode-indicator" id="status-mode" type="button" title="切换模式">
-                    <span class="status-icon">MODE</span><span class="status-label">快速模式</span>
-                </button>
-                <button class="status-item" id="status-sound" type="button" title="音效">
-                    <span class="status-icon">SND</span><span class="status-label">开</span>
-                </button>
-                <button class="status-item" id="btn-menu" type="button" title="主菜单">
-                    <span class="status-icon">MENU</span><span class="status-label">主菜单</span>
-                </button>
-                <button class="status-item" id="btn-settings" type="button" title="设置">
-                    <span class="status-icon">SET</span><span class="status-label">设置</span>
-                </button>
-                <button class="status-item" id="btn-sidebar-toggle" type="button" title="侧边栏">
-                    <span class="status-icon">SIDE</span><span class="status-label">侧栏</span>
-                </button>
-            </div>
-        </div>
+        <div class="bgfx" aria-hidden="true"></div>
+        <div class="paperfx" aria-hidden="true"></div>
+        <div class="grain" aria-hidden="true"></div>
+        <!-- 左侧窄栏：设计稿的 .rail。承载原本挤在状态栏右侧的纯图标操作 -->
+        <aside id="rail" class="rail">
+            <div class="rail-brand">夜谭</div>
+            <button class="rail-ico" id="status-sound" type="button" title="音效">
+                <span class="rail-glyph" aria-hidden="true">♪</span>
+                <span class="status-icon">SND</span><span class="status-label">开</span>
+            </button>
+            <button class="rail-ico" id="btn-sidebar-toggle" type="button" title="侧边栏">
+                <span class="rail-glyph" aria-hidden="true">▤</span>
+                <span class="status-icon">SIDE</span><span class="status-label">侧栏</span>
+            </button>
+            <span class="rail-sp"></span>
+            <button class="rail-ico" id="btn-menu" type="button" title="主菜单">
+                <span class="rail-glyph" aria-hidden="true">❖</span>
+                <span class="status-icon">MENU</span><span class="status-label">主菜单</span>
+            </button>
+            <button class="rail-ico" id="btn-settings" type="button" title="设置">
+                <span class="rail-glyph" aria-hidden="true">⚙</span>
+                <span class="status-icon">SET</span><span class="status-label">设置</span>
+            </button>
+        </aside>
 
         <div id="main-container">
             <div id="terminal-area">
+                <!-- 章节条：设计稿的 .statusbar。带实时文案的项目原有元素都留在这里 -->
+                <div id="status-bar">
+                    <div class="status-left">
+                        <span class="status-item chapter" id="status-chapter">未开始</span>
+                        <span class="status-item" id="status-scenario" style="display:none;"></span>
+                    </div>
+                    <div class="status-right">
+                        <span class="status-item" id="status-char-name">无名调查员</span>
+                        <span class="status-item" id="status-time">--:--</span>
+                        <span class="status-item" id="status-token-usage" style="display:none;">API 0 · Tok 0</span>
+                        <button class="status-item mode-indicator" id="status-mode" type="button" title="切换模式">
+                            <span class="status-icon">MODE</span><span class="status-label">快速模式</span>
+                        </button>
+                        <div class="tsw" id="game-tsw">
+                            <button type="button" data-set="detective" title="侦探事务所" aria-pressed="true"><i style="background:#8c2f28"></i></button>
+                            <button type="button" data-set="deco" title="装饰艺术" aria-pressed="false"><i style="background:#d8b65a"></i></button>
+                            <button type="button" data-set="cthulhu" title="深海" aria-pressed="false"><i style="background:#46c9a8"></i></button>
+                        </div>
+                        <span class="save-dot" id="save-dot"><i></i><span class="save-text">已就位</span></span>
+                    </div>
+                </div>
                 <div id="terminal-output"></div>
                 <div id="input-area">
                     <span id="input-prompt">&gt;</span>

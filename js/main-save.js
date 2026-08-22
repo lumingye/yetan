@@ -1,5 +1,21 @@
 Object.assign(Main, {
+    // 章节条右侧的存档指示器：存盘时闪一下「已保存」，随后回到「已就位」
+    _flashSaveDot() {
+        const el = document.getElementById('save-dot');
+        if (!el) return;
+        const txt = el.querySelector('.save-text');
+        if (!txt) return;
+        txt.textContent = '已保存';
+        el.classList.add('saving');
+        clearTimeout(this._saveDotTimer);
+        this._saveDotTimer = setTimeout(function() {
+            txt.textContent = '已就位';
+            el.classList.remove('saving');
+        }, 1600);
+    },
+
     autoSave() {
+        this._flashSaveDot();
         const saveData = this.buildSaveData();
         if (this.gameState.isTutorialDemo) {
             saveData.isTutorialDemo = true;
