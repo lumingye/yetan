@@ -77,6 +77,23 @@ const Main = {
                 MenuSystem.toggle();
             }
         });
+        document.querySelectorAll('#game-tsw button').forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                var theme = dot.dataset.set;
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('coc-theme', theme);
+                document.querySelectorAll('#game-tsw button').forEach(function(d) {
+                    d.setAttribute('aria-pressed', d === dot ? 'true' : 'false');
+                });
+            });
+        });
+        (function syncGameThemeDots() {
+            var cur = document.documentElement.getAttribute('data-theme') || 'detective';
+            document.querySelectorAll('#game-tsw button').forEach(function(d) {
+                d.setAttribute('aria-pressed', d.dataset.set === cur ? 'true' : 'false');
+            });
+        })();
+
         document.getElementById('btn-sidebar-toggle')?.addEventListener('click', () => {
             var sidebar = document.getElementById('sidebar');
             var mainContainer = document.getElementById('main-container');

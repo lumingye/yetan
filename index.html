@@ -8,42 +8,63 @@
     <link rel="stylesheet" href="css/theme-detective.css?v=2">
     <link rel="stylesheet" href="css/theme-deco.css?v=2">
     <link rel="stylesheet" href="css/theme-cthulhu.css?v=2">
-    <link rel="stylesheet" href="css/theme-abyss.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
+    <link rel="stylesheet" href="css/ui-v2.css?v=1">
 </head>
 <body>
     <div class="particles-container" id="particlesContainer"></div>
     <div id="menu-container"></div>
     <div id="app">
-        <div id="status-bar">
-            <div class="status-left">
-                <span class="game-title">夜谭</span>
-                <span class="status-item" id="status-char-name">无名调查员</span>
-                <span class="status-item" id="status-scenario" style="display:none;"></span>
-                <span class="status-item" id="status-time">--:--</span>
-                <span class="status-item" id="status-chapter">未开始</span>
-                <span class="status-item" id="status-token-usage" style="display:none;">API 0 · Tok 0</span>
-            </div>
-            <div class="status-right">
-                <button class="status-item mode-indicator" id="status-mode" type="button" title="切换模式">
-                    <span class="status-icon">MODE</span><span class="status-label">快速模式</span>
-                </button>
-                <button class="status-item" id="status-sound" type="button" title="音效">
-                    <span class="status-icon">SND</span><span class="status-label">开</span>
-                </button>
-                <button class="status-item" id="btn-menu" type="button" title="主菜单">
-                    <span class="status-icon">MENU</span><span class="status-label">主菜单</span>
-                </button>
-                <button class="status-item" id="btn-settings" type="button" title="设置">
-                    <span class="status-icon">SET</span><span class="status-label">设置</span>
-                </button>
-                <button class="status-item" id="btn-sidebar-toggle" type="button" title="侧边栏">
-                    <span class="status-icon">SIDE</span><span class="status-label">侧栏</span>
-                </button>
-            </div>
-        </div>
+        <div class="bgfx" aria-hidden="true"></div>
+        <div class="paperfx" aria-hidden="true"></div>
+        <div class="grain" aria-hidden="true"></div>
+        <!-- 左侧窄栏：设计稿的 .rail。承载原本挤在状态栏右侧的纯图标操作 -->
+        <aside id="rail" class="rail">
+            <div class="rail-brand">夜谭</div>
+            <button class="rail-ico" id="status-sound" type="button" title="音效">
+                <span class="rail-glyph" aria-hidden="true">♪</span>
+                <span class="status-icon">SND</span><span class="status-label">开</span>
+            </button>
+            <button class="rail-ico" id="btn-sidebar-toggle" type="button" title="侧边栏">
+                <span class="rail-glyph" aria-hidden="true">▤</span>
+                <span class="status-icon">SIDE</span><span class="status-label">侧栏</span>
+            </button>
+            <span class="rail-sp"></span>
+            <button class="rail-ico" id="btn-menu" type="button" title="主菜单">
+                <span class="rail-glyph" aria-hidden="true">❖</span>
+                <span class="status-icon">MENU</span><span class="status-label">主菜单</span>
+            </button>
+            <button class="rail-ico" id="btn-settings" type="button" title="设置">
+                <span class="rail-glyph" aria-hidden="true">⚙</span>
+                <span class="status-icon">SET</span><span class="status-label">设置</span>
+            </button>
+        </aside>
 
         <div id="main-container">
             <div id="terminal-area">
+                <!-- 章节条：设计稿的 .statusbar。带实时文案的项目原有元素都留在这里 -->
+                <div id="status-bar">
+                    <div class="status-left">
+                        <span class="status-item chapter" id="status-chapter">未开始</span>
+                        <span class="status-item" id="status-scenario" style="display:none;"></span>
+                    </div>
+                    <div class="status-right">
+                        <span class="status-item" id="status-char-name">无名调查员</span>
+                        <span class="status-item" id="status-time">--:--</span>
+                        <span class="status-item" id="status-token-usage" style="display:none;">API 0 · Tok 0</span>
+                        <button class="status-item mode-indicator" id="status-mode" type="button" title="切换模式">
+                            <span class="status-icon">MODE</span><span class="status-label">快速模式</span>
+                        </button>
+                        <div class="tsw" id="game-tsw">
+                            <button type="button" data-set="detective" title="侦探事务所" aria-pressed="true"><i style="background:#8c2f28"></i></button>
+                            <button type="button" data-set="deco" title="装饰艺术" aria-pressed="false"><i style="background:#d8b65a"></i></button>
+                            <button type="button" data-set="cthulhu" title="深海" aria-pressed="false"><i style="background:#46c9a8"></i></button>
+                        </div>
+                        <span class="save-dot" id="save-dot"><i></i><span class="save-text">已就位</span></span>
+                    </div>
+                </div>
                 <div id="terminal-output"></div>
                 <div id="input-area">
                     <span id="input-prompt">&gt;</span>
@@ -145,6 +166,9 @@
     <div id="settings-overlay-backdrop"></div>
     <div id="settings-overlay">
         <div class="settings-modal">
+            <div class="bgfx" aria-hidden="true"></div>
+            <div class="paperfx" aria-hidden="true"></div>
+            <div class="grain" aria-hidden="true"></div>
             <div class="settings-modal-header">
                 <div class="settings-modal-title">
                     <span class="logo-icon">◈</span>
@@ -482,13 +506,6 @@
                                 <span class="theme-option-name">克苏鲁秘教</span>
                                 <span class="theme-option-desc">暗夜血腥风格</span>
                             </div>
-                            <div class="theme-option" data-theme="abyss">
-                                <div class="theme-preview theme-preview-abyss">
-                                    <span class="theme-preview-icon">◈</span>
-                                </div>
-                                <span class="theme-option-name">深渊低语</span>
-                                <span class="theme-option-desc">虚空回响风格</span>
-                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -585,6 +602,11 @@
                         <span class="status-msg" id="gameStatus"></span>
                     </div>
                 </div>
+            </div>
+            <div class="footline">
+                <span class="v">夜谭 v2.0</span>
+                <span class="wave" aria-hidden="true"></span>
+                <span class="v">Preferences</span>
             </div>
         </div>
     </div>
@@ -685,7 +707,13 @@
     <script src="js/random-events.js?v=1"></script>
     <script>
     (function() {
+        var THEMES = ['detective', 'deco', 'cthulhu'];
         var saved = localStorage.getItem('coc-theme') || 'detective';
+        // 旧版本存过已废弃的 abyss，回落到默认主题，否则会落到没有 token 的空主题上
+        if (THEMES.indexOf(saved) < 0) {
+            saved = 'detective';
+            try { localStorage.setItem('coc-theme', saved); } catch (e) {}
+        }
         document.documentElement.setAttribute('data-theme', saved);
 
         function updateThemeUI(theme) {
